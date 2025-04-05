@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,9 +12,8 @@ public class WaveManager : MonoBehaviour
 {
    
     public static WaveManager Instance { get; private set; }
-    
     public UnityEvent OnWaveComplete;
-    // private GameManager _gameManager; todo
+    private GameManager _gameManager; 
     public Wave[] waves;
     private Wave currentWave;
     [SerializeField] private Transform spawnPoint;
@@ -23,7 +23,7 @@ public class WaveManager : MonoBehaviour
     private int enemyIndex = 0;
     private float spawnTimer;
     private int enemiesSpawned;
-    private List<GameObject> aliveEnemies = new List<GameObject>();
+    private List<IEnemy> aliveEnemies = new List<IEnemy>();
 
     public void Awake()
     {
@@ -35,14 +35,14 @@ public class WaveManager : MonoBehaviour
         {
             Instance = this; 
         }
-        //#TODO Register WaveManager in the ServiceLocator
-        //ServiceLocator.Instance.Register<WaveManager>(this);
+       
+        ServiceLocator.Instance.Register<WaveManager>(this);
         
     }
 
     private void Start()
-    { 
-        // _gameManager = ServiceLocator.Get<IGameManager>(); todo
+    {
+        _gameManager = ServiceLocator.Instance.GetService<GameManager>();
         currentWave = waves[ waveIndex];
         SetState(WaveState.Wait);
     }
@@ -64,7 +64,7 @@ public class WaveManager : MonoBehaviour
                 break;
 
             case WaveState.Pause:
-                // wait for UI input
+                // wait for player input
                 break;
         }
     }
@@ -90,23 +90,20 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnEnemyFromWave()
     {
-        GameObject enemyPrefab = currentWave.EnemiesInWave[enemyIndex];
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        // newEnemy.SetPath(path); TODO
+        EnemyData enemyData = currentWave.EnemiesInWave[enemyIndex];
+        Enemy newEnemy = Instantiate(enemyData.Prefab, spawnPoint.position, spawnPoint.rotation);
+        newEnemy.SetPath(path);
+        newEnemy.Initialize(enemyData);
+
         aliveEnemies.Add(newEnemy);
+
         enemyIndex++;
         enemiesSpawned++;
     }
 
-    private void StartWave()
+    public void StartWave()
     {
-        if (waveIndex >= waves.Length)
-        {
-            //todo move to game menager when implemented
-            Debug.Log("All waves complete.");
-            return;
-        }
-
+        if (waveIndex >= waves.Length) return;
         currentWave = waves[waveIndex];
         waveIndex++;
 
@@ -122,14 +119,17 @@ public class WaveManager : MonoBehaviour
         currentState = newState;
     }
     
-    public void OnNextWaveButtonClicked() // todo
-    {
-        if (currentState != WaveState.Pause) return;
-        StartWave();
-    }
-    // #TODO Call this method in ENEMY CLASS when an enemy dies
-    public void RemoveEnemy(GameObject enemy)
+    
+    public void RemoveEnemy(Enemy enemy)
     {
         aliveEnemies.Remove(enemy);  
+    }
+    
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            ServiceLocator.Instance.UnregisterService<WaveManager>();
+        }
     }
 }

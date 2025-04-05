@@ -6,10 +6,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    [SerializeField] private int _numberOfWaves;
+    private int _numberOfWaves;
     private int currentWave;
     private GameState _gameState;
-    
+    private WaveManager _waveManager;
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -22,10 +22,13 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             ServiceLocator.Instance.Register(this);
             _gameState = GameState.BUILDING;
-            currentWave = 1;
+            currentWave = 0;
         }
         
-
+        _waveManager = ServiceLocator.Instance.GetService<WaveManager>();
+        _numberOfWaves = _waveManager.waves.Length;
+        
+        _waveManager.OnWaveComplete.AddListener(OnWaveComplete);
     }
 
     private void Update()
@@ -39,8 +42,8 @@ public class GameManager : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         _gameState = GameState.DEFENDING;
+                        _waveManager.StartWave();
                     }
-                    //TODO faza budowania wież
                     break;
                 case GameState.DEFENDING:
                     //TODO faza obrony
@@ -52,5 +55,20 @@ public class GameManager : MonoBehaviour
     public GameState GetGameState()
     {
         return _gameState;
+    }
+    
+    public void OnWaveComplete()
+    {
+        
+        if (currentWave <= _numberOfWaves)
+        {
+            _gameState = GameState.BUILDING; 
+            currentWave++; 
+        }
+        else
+        {
+            Debug.Log("All waves completed!");
+            // #TODO Implement endgame logic or UI to show completion
+        }
     }
 }
