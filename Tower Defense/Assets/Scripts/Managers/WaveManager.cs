@@ -9,6 +9,9 @@ using Waves;
 
 public class WaveManager : MonoBehaviour
 {
+   
+    public static WaveManager Instance { get; private set; }
+    
     public UnityEvent OnWaveComplete;
     // private GameManager _gameManager; todo
     public Wave[] waves;
@@ -21,13 +24,29 @@ public class WaveManager : MonoBehaviour
     private float spawnTimer;
     private int enemiesSpawned;
     private List<GameObject> aliveEnemies = new List<GameObject>();
+
+    public void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this; 
+        }
+        //#TODO Register WaveManager in the ServiceLocator
+        //ServiceLocator.Instance.Register<WaveManager>(this);
+        
+    }
+
     private void Start()
     { 
         // _gameManager = ServiceLocator.Get<IGameManager>(); todo
         currentWave = waves[ waveIndex];
         SetState(WaveState.Wait);
     }
-
+    
     private void Update()
     {
         switch (currentState)
