@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HUDPresenter
+{
+    private HUDModel model;
+    private HUDView view;
+
+    public HUDPresenter(HUDModel model, HUDView view)
+    {
+        this.model = model;
+        this.view = view;
+
+        model.OnMoneyChanged += view.UpdateMoney;
+        model.OnHPChanged += view.UpdateHP;
+        model.OnWaveChanged += view.UpdateWave;
+
+       // view.nextWaveButton.onClick.AddListener(OnNextWaveClicked);
+    }
+
+    // #TODO If we decide to have a button to start a wave instead of space
+    /*
+    private void OnNextWaveClicked()
+    {
+        
+        ServiceLocator.Instance.GetService<GameManager>()?.OnNextWaveButtonClicked(); 
+    }
+    */
+}

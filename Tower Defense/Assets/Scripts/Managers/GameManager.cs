@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private int currentWave;
     private GameState _gameState;
     private WaveManager _waveManager;
+    
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -63,12 +64,18 @@ public class GameManager : MonoBehaviour
         if (currentWave <= _numberOfWaves)
         {
             _gameState = GameState.BUILDING; 
-            currentWave++; 
+            currentWave++;
+            ServiceLocator.Instance.GetService<HUDController>()?.SetWave(currentWave);
         }
         else
         {
             Debug.Log("All waves completed!");
             // #TODO Implement endgame logic or UI to show completion
         }
+    }
+
+    public int GetCurrentWave()
+    {
+        return currentWave;
     }
 }

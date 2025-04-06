@@ -1,4 +1,5 @@
-﻿using ScriptableObjects;
+﻿using Managers;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Enemies
@@ -67,8 +68,9 @@ namespace Enemies
 
         public void Die()
         {
-            // TODO play VFX, sound
-            ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this);
+            // TODO play VFX, sound and increase money
+            ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
+            ServiceLocator.Instance.GetService<ResourceManager>()?.AddMoney(data.Reward);
             Destroy(gameObject);
         }
     }
