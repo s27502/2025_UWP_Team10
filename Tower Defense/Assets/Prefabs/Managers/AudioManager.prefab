@@ -176,8 +176,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundtrackAudioSource: {fileID: 1488509963213955913}
   _SFXAudioSource: {fileID: 8102701746057350390}
-  _buildingMusic: {fileID: 8300000, guid: 6f652c8886dd53f4c898935376bcbc2f, type: 3}
-  _defendingMusic: {fileID: 8300000, guid: a22c86f5423e7ec419882df0126e5c10, type: 3}
+  sfxClips: []
+  soundtrackClips:
+  - {fileID: 8300000, guid: 6f652c8886dd53f4c898935376bcbc2f, type: 3}
+  - {fileID: 8300000, guid: a22c86f5423e7ec419882df0126e5c10, type: 3}
 --- !u!1 &8587615203386850771
 GameObject:
   m_ObjectHideFlags: 0
