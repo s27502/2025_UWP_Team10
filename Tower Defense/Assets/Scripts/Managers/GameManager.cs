@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private int _numberOfWaves;
     private int currentWave;
     private GameState _gameState;
-    private WaveManager _waveManager;
+    //private WaveManager _waveManager;
     
     public void Awake()
     {
@@ -26,24 +26,24 @@ public class GameManager : MonoBehaviour
             currentWave = 0;
         }
         
-        _waveManager = ServiceLocator.Instance.GetService<WaveManager>();
-        _numberOfWaves = _waveManager.waves.Length;
+        //_waveManager = ServiceLocator.Instance.GetService<WaveManager>();
+        //_numberOfWaves = _waveManager.waves.Length;
         
-        _waveManager.OnWaveComplete.AddListener(OnWaveComplete);
+        //_waveManager.OnWaveComplete.AddListener(OnWaveComplete);
     }
 
     private void Update()
     {
         if (currentWave <= _numberOfWaves)
         {
-            Debug.Log(_gameState);
+            //Debug.Log(_gameState);
             switch (_gameState)
             {
                 case GameState.BUILDING:
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         _gameState = GameState.DEFENDING;
-                        _waveManager.StartWave();
+                        //_waveManager.StartWave();
                     }
                     break;
                 case GameState.DEFENDING:

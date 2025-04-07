@@ -1,13 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Managers
-{
     public class ResourceManager : MonoBehaviour
     {
         public static ResourceManager Instance { get; private set; }
 
-        private int _money;
+        [SerializeField] private int _money;
         private int _hp;
 
         public event Action<int> OnMoneyChanged;
@@ -22,7 +20,7 @@ namespace Managers
             else
             {
                 Instance = this;
-                ServiceLocator.Instance.Register<ResourceManager>(this);
+                ServiceLocator.Instance.Register<ResourceManager>(Instance);
             }
 
             _money = 100;
@@ -64,4 +62,3 @@ namespace Managers
         public int GetMoney() => _money;
         public int GetHP() => _hp;
     }
-}
