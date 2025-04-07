@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class BasicTower : MonoBehaviour
 {
+    [SerializeField] private int _cost;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +16,6 @@ public class Tower : MonoBehaviour
     {
         
     }
+
+    public int GetCost() => _cost;
 }
