@@ -20,11 +20,13 @@ using UnityEngine;
             else
             {
                 Instance = this;
-                ServiceLocator.Instance.Register<ResourceManager>(Instance);
+                DontDestroyOnLoad(Instance);
+                ServiceLocator.Instance.Register(this);
+                _money = 100;
+                _hp = 100;
             }
 
-            _money = 100;
-            _hp = 100;
+
         }
 
         public void AddMoney(int amount)
