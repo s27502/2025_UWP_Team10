@@ -22,12 +22,12 @@ public class PlacingField : MonoBehaviour,
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
-        if (_resourceManager == null)
+
+        if (_tower.gameObject.GetComponent<BasicTower>().GetCost() <= _resourceManager.GetMoney())
         {
-            Debug.LogError("ResourceManager nie został przypisany!");
             Debug.Log("Object Clicked: " + gameObject.name);
             _tower.SetActive(true);
+            _resourceManager.SpendMoney(_tower.gameObject.GetComponent<BasicTower>().GetCost());
         }
 
     }
