@@ -6,9 +6,9 @@ namespace Enemies
 {
     public class Enemy : MonoBehaviour, IEnemy
     {
-        private EnemyData data;
+        protected EnemyData data;
         private float currentHP;
-        private Transform[] path;
+        protected Transform[] path;
         private int pathIndex = 0;
         private const float PathThreshold = 0.1f;
 

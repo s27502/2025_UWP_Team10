@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private int _numberOfWaves;
     private int currentWave;
     private GameState _gameState;
-    //private WaveManager _waveManager;
+    private WaveManager _waveManager;
     
     public void Awake()
     {
