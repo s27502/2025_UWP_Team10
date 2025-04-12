@@ -31,4 +31,6 @@ public class HUDController : MonoBehaviour
     {
         ServiceLocator.Instance.UnregisterService<HUDController>();
     }
+    
+    public HUDView GetHUDView() => view;
 }

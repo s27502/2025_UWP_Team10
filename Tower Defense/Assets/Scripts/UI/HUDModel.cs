@@ -35,5 +35,7 @@ public class HUDModel
     public int GetMoney() => money;
     public int GetHP() => hp;
     public int GetWave() => wave;
+
+
 }
 
