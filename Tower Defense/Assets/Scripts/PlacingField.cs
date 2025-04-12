@@ -13,7 +13,7 @@ public class PlacingField : MonoBehaviour,
 {
     private GameObject _tower;
     private ResourceManager _resourceManager;
-    [SerializeField] private GameObject _placementPanel;
+    private GameObject _placementPanel;
     private bool _placementPanelActive;
     private bool _towerPlaced;
 
@@ -27,10 +27,15 @@ public class PlacingField : MonoBehaviour,
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        _placementPanel = ServiceLocator.Instance.GetService<HUDController>().GetHUDView().gameObject.transform.Find("PlacementPanel").gameObject;
+        
+        
         if (!_placementPanelActive && !_towerPlaced)
         {
             _placementPanel.transform.position = eventData.position;
             _placementPanel.SetActive(true);
+            _placementPanel.GetComponent<PlacementPanel>().SetPlacingField(this);
+            _placementPanel.GetComponent<PlacementPanel>().SetCannonPriceText(100);// update aby cena brala sie z wiezy
             _placementPanelActive = true;
         }
 
@@ -69,5 +74,10 @@ public class PlacingField : MonoBehaviour,
             _towerPlaced = true;
         }
 
+    }
+
+    public void SetPlacementPanelActive(bool active)
+    {
+        _placementPanelActive = active;
     }
 }
