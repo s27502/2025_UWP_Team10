@@ -5,11 +5,7 @@ using UnityEngine.EventSystems;
 
 
 public class PlacingField : MonoBehaviour, 
-    IPointerClickHandler,
-    IPointerDownHandler,
-    IPointerUpHandler,
-    IPointerEnterHandler,
-    IPointerExitHandler
+    IPointerClickHandler
 {
     private GameObject _tower;
     private ResourceManager _resourceManager;
@@ -40,26 +36,6 @@ public class PlacingField : MonoBehaviour,
         }
 
 
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        Debug.Log("Pointer Down");
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        Debug.Log("Pointer Up");
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        Debug.Log("Pointer Enter");
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        Debug.Log("Pointer Exit");
     }
 
     public void PlaceTower()

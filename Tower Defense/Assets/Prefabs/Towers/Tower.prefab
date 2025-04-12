@@ -119,3 +119,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cost: 100
+  _atkSpeed: 1
+  _dmg: 10
