@@ -13,22 +13,27 @@ public class PlacingField : MonoBehaviour,
 {
     private GameObject _tower;
     private ResourceManager _resourceManager;
+    [SerializeField] private GameObject _placementPanel;
+    private bool _placementPanelActive;
+    private bool _towerPlaced;
 
     private void Awake()
     {
         _tower = transform.Find("Tower").gameObject;
+        _placementPanelActive = false;
+        _towerPlaced = false;
         _resourceManager = ServiceLocator.Instance.GetService<ResourceManager>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-
-        if (_tower.gameObject.GetComponent<BasicTower>().GetCost() <= _resourceManager.GetMoney())
+        if (!_placementPanelActive && !_towerPlaced)
         {
-            Debug.Log("Object Clicked: " + gameObject.name);
-            _tower.SetActive(true);
-            _resourceManager.SpendMoney(_tower.gameObject.GetComponent<BasicTower>().GetCost());
+            _placementPanel.transform.position = eventData.position;
+            _placementPanel.SetActive(true);
+            _placementPanelActive = true;
         }
+
 
     }
 
@@ -50,5 +55,19 @@ public class PlacingField : MonoBehaviour,
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Pointer Exit");
+    }
+
+    public void PlaceTower()
+    {
+        
+        if (_tower.gameObject.GetComponent<BasicTower>().GetCost() <= _resourceManager.GetMoney())
+        { 
+            _tower.SetActive(true);
+            _resourceManager.SpendMoney(_tower.gameObject.GetComponent<BasicTower>().GetCost());
+            _placementPanel.SetActive(false);
+            _placementPanelActive = false;
+            _towerPlaced = true;
+        }
+
     }
 }
