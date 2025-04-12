@@ -394,24 +394,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &480833072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1509681656365305877, guid: 4613f4c25117f13479c6ba30e2b11032,
-    type: 3}
-  m_PrefabInstance: {fileID: 1932234555}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &480833074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480833072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12203bf381d952e49b3ade0121cd6847, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &640779394
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,74 +735,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1509681656365305877, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3105535526245899146, guid: 4613f4c25117f13479c6ba30e2b11032,
         type: 3}
       propertyPath: m_Name
       value: HUDCanvas_Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 480833074}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Close
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlacementPanel, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6300550956918438433, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206269639295881626, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 480833074}
-    - target: {fileID: 9206269639295881626, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlaceTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 9206269639295881626, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PlacementPanel, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1509681656365305877, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 480833074}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4613f4c25117f13479c6ba30e2b11032, type: 3}
 --- !u!1 &2034359792
 GameObject:
