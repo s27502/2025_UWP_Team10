@@ -7,6 +7,7 @@ public class HUDPresenter
     private HUDModel model;
     private HUDView view;
 
+
     public HUDPresenter(HUDModel model, HUDView view)
     {
         this.model = model;
@@ -15,6 +16,8 @@ public class HUDPresenter
         model.OnMoneyChanged += view.UpdateMoney;
         model.OnHPChanged += view.UpdateHP;
         model.OnWaveChanged += view.UpdateWave;
+        model.OnEnemyTypesChanged += view.UpdateEnemyTypes;
+        model.OnEnemyInfoChanged += view.UpdateEnemyInfo;
 
        // view.nextWaveButton.onClick.AddListener(OnNextWaveClicked);
     }
