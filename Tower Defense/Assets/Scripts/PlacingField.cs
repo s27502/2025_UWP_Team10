@@ -73,6 +73,11 @@ public class PlacingField : MonoBehaviour,
             _placementPanelActive = false;
             _towerPlaced = true;
         }
+        else
+        {
+            _placementPanel.SetActive(false);
+            _placementPanelActive = false;
+        }
 
     }
 
