@@ -38,7 +38,6 @@ public class WaveManager : MonoBehaviour
         }
        
         ServiceLocator.Instance.Register<WaveManager>(this);
-        
     }
 
     private void Start()

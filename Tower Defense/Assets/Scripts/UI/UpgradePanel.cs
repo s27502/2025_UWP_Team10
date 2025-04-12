@@ -31,6 +31,7 @@ public class UpgradePanel : MonoBehaviour
         _tower.gameObject.SetActive(false);
         _placingField.SetTowerPlaced(false);
         Debug.Log("Sell tower");
+        Close();
     }
     public void UpgradeAtkSpeed()
     {

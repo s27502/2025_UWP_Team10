@@ -12,14 +12,13 @@ public class PlacingField : MonoBehaviour,
     private GameObject _placementPanel;
     private bool _placementPanelActive;
     private bool _towerPlaced;
-    private UpgradePanel _upgradePanel;
+    private GameObject _upgradePanel;
 
 
     private void Awake()
     {
         _tower = transform.Find("Tower").gameObject;
         _placementPanelActive = false;
-        _upgradePanel.GetComponent<UpgradePanel>().SetPlacingField(this);
         _towerPlaced = false;
         _resourceManager = ServiceLocator.Instance.GetService<ResourceManager>();
     }
@@ -43,7 +42,8 @@ public class PlacingField : MonoBehaviour,
 
     public void PlaceTower()
     {
-        
+        _upgradePanel = ServiceLocator.Instance.GetService<HUDController>().GetHUDView().gameObject.transform.Find("UpgradePanel").gameObject;
+        _upgradePanel.GetComponent<UpgradePanel>().SetPlacingField(this);
         if (_tower.gameObject.GetComponent<BasicTower>().GetCost() <= _resourceManager.GetMoney())
         { 
             _tower.SetActive(true);
@@ -57,6 +57,7 @@ public class PlacingField : MonoBehaviour,
             _placementPanel.SetActive(false);
             _placementPanelActive = false;
         }
+        
 
     }
     public void SetTowerPlaced(bool towerPlaced)
