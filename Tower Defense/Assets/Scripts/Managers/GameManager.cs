@@ -23,13 +23,13 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             ServiceLocator.Instance.Register(this);
             _gameState = GameState.BUILDING;
-            currentWave = 0;
+            currentWave = 1;
         }
         
-        //_waveManager = ServiceLocator.Instance.GetService<WaveManager>();
-        //_numberOfWaves = _waveManager.waves.Length;
+        _waveManager = ServiceLocator.Instance.GetService<WaveManager>();
+        _numberOfWaves = _waveManager.waves.Length;
         
-        //_waveManager.OnWaveComplete.AddListener(OnWaveComplete);
+        _waveManager.OnWaveComplete.AddListener(OnWaveComplete);
     }
 
     private void Update()
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         _gameState = GameState.DEFENDING;
-                        //_waveManager.StartWave();
+                        _waveManager.StartWave();
                     }
                     break;
                 case GameState.DEFENDING:
@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("All waves completed!");
+            print("All waves completed!");
             // #TODO Implement endgame logic or UI to show completion
         }
     }

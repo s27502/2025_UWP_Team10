@@ -14,7 +14,7 @@ public class WaveManager : MonoBehaviour
     public static WaveManager Instance { get; private set; }
     public UnityEvent OnWaveComplete;
     private GameManager _gameManager; 
-    public Wave[] waves;
+    [SerializeField] public Wave[] waves;
     private Wave currentWave;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform[] path;
@@ -44,7 +44,7 @@ public class WaveManager : MonoBehaviour
     {
         _gameManager = ServiceLocator.Instance.GetService<GameManager>();
         currentWave = waves[ waveIndex];
-        SetState(WaveState.Wait);
+        SetState(WaveState.Pause);
     }
     
     private void Update()

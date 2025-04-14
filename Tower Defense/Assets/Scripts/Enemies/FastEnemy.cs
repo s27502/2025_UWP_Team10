@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class FastEnemy : Enemy, IEnemy, IDamageable
+    public class FastEnemy : Enemy
     {
         private void Start()
         {

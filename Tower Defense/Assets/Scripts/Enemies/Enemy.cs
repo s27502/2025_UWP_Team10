@@ -70,7 +70,7 @@ namespace Enemies
         {
             // TODO play VFX, sound and increase money
             ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
-            
+            ServiceLocator.Instance.GetService<ResourceManager>()?.DealDamage(1);
             Destroy(gameObject);
         }
 

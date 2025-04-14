@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class SlowEnemy : Enemy, IEnemy, IDamageable
+    public class SlowEnemy : Enemy
     {
         private void Start()
         {
