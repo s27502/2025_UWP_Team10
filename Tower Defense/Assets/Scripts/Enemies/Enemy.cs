@@ -11,7 +11,7 @@ namespace Enemies
         protected Transform[] path;
         private int pathIndex = 0;
         private const float PathThreshold = 0.1f;
-
+        private Vector3 direction;
         public void Initialize(EnemyData enemyData)
         {
             data = enemyData;
@@ -37,6 +37,12 @@ namespace Enemies
             Transform targetPoint = path[pathIndex];
             float _speed = data.Speed * Time.deltaTime;
 
+            direction = (targetPoint.position - transform.position).normalized;
+            if (direction != Vector3.zero)
+            {
+                transform.forward = direction;
+            }
+            
             transform.position = Vector3.MoveTowards(transform.position, targetPoint.position, _speed);
 
             if (Vector3.Distance(transform.position, targetPoint.position) < PathThreshold)
