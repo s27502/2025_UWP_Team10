@@ -14,8 +14,8 @@ public class HUDModel
     private int hp;
     private int wave;
     private string enemyTypes;
-    public event Action<string> OnEnemyTypesChanged;
     private string enemyInfo;
+    public event Action<string> OnEnemyTypesChanged;
     public event Action<string> OnEnemyInfoChanged;
 
     public void SetEnemyInfo(string value)
