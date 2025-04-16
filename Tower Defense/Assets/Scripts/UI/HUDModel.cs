@@ -13,6 +13,22 @@ public class HUDModel
     private int money;
     private int hp;
     private int wave;
+    private string enemyTypes;
+    public event Action<string> OnEnemyTypesChanged;
+    private string enemyInfo;
+    public event Action<string> OnEnemyInfoChanged;
+
+    public void SetEnemyInfo(string value)
+    {
+        enemyInfo = value;
+        OnEnemyInfoChanged?.Invoke(enemyInfo);
+    }
+
+    public void SetEnemyTypes(string value)
+    {
+        enemyTypes = value;
+        OnEnemyTypesChanged?.Invoke(enemyTypes);
+    }
 
     public void SetMoney(int value)
     {

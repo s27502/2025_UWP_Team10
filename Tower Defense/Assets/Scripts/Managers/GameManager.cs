@@ -10,7 +10,19 @@ public class GameManager : MonoBehaviour
     private int currentWave;
     private GameState _gameState;
     private WaveManager _waveManager;
+    public string GetEnemyTypesAndCountForWave()
+    {
+        var waveManager = ServiceLocator.Instance.GetService<WaveManager>();
+        var counts = waveManager.GetEnemyTypeCounts();
+
+        string enemyInfo = "Typy wrogów:\n";
+        foreach (var enemy in counts)
+        {
+            enemyInfo += $"{enemy.Key}: {enemy.Value}\n";
+        }
     
+        return enemyInfo;
+    }
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -30,6 +42,26 @@ public class GameManager : MonoBehaviour
         _numberOfWaves = _waveManager.waves.Length;
         
         _waveManager.OnWaveComplete.AddListener(OnWaveComplete);
+    }
+    public string GetCurrentWaveEnemyTypes()
+    {
+        return ServiceLocator.Instance.GetService<WaveManager>()?.GetEnemyTypesInCurrentWave();
+    }
+    public string GetEnemyTypeInfoString()
+    {
+        var waveManager = ServiceLocator.Instance.GetService<WaveManager>();
+        var enemyCounts = waveManager?.GetEnemyTypeCounts();
+
+        if (enemyCounts == null || enemyCounts.Count == 0)
+            return "Brak wrogów";
+
+        List<string> parts = new List<string>();
+        foreach (var pair in enemyCounts)
+        {
+            parts.Add($"{pair.Key}: {pair.Value}");
+        }
+
+        return string.Join(", ", parts);
     }
 
     private void Update()

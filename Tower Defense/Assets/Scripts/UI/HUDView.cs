@@ -9,6 +9,21 @@ public class HUDView : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     public TMP_Text waveText;
     public Button nextWaveButton;
+    [SerializeField] private TMP_Text enemyTypesText;
+    [SerializeField] private TMP_Text enemyInfoText;
+
+
+    public void UpdateEnemyInfo(string info)
+    {
+        Debug.Log("USTAWIAM enemyInfoText: " + info);
+        enemyInfoText.text = info;
+    }
+
+
+    public void UpdateEnemyTypes(string enemyTypes)
+    {
+        enemyTypesText.text = enemyTypes;
+    }
 
     public void UpdateMoney(int value)
     {

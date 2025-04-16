@@ -24,6 +24,7 @@ public class WaveManager : MonoBehaviour
     private float spawnTimer;
     private int enemiesSpawned;
     private List<IEnemy> aliveEnemies = new List<IEnemy>();
+    public UnityEvent OnWaveStart;
 
     public void Awake()
     {
@@ -37,7 +38,6 @@ public class WaveManager : MonoBehaviour
         }
        
         ServiceLocator.Instance.Register<WaveManager>(this);
-        
     }
 
     private void Start()
@@ -103,6 +103,8 @@ public class WaveManager : MonoBehaviour
 
     public void StartWave()
     {
+        OnWaveStart?.Invoke();
+
         if (waveIndex >= waves.Length) return;
         currentWave = waves[waveIndex];
         waveIndex++;
@@ -111,7 +113,8 @@ public class WaveManager : MonoBehaviour
         enemiesSpawned = 0;
         spawnTimer = 0f;
         SetState(WaveState.Spawn);
-        
+        OnWaveStart?.Invoke();
+
     }
     
     private void SetState(WaveState newState)
@@ -132,4 +135,33 @@ public class WaveManager : MonoBehaviour
             ServiceLocator.Instance.UnregisterService<WaveManager>();
         }
     }
+    public string GetEnemyTypesInCurrentWave()
+    {
+        if (currentWave == null || currentWave.EnemiesInWave == null) return "";
+
+        HashSet<string> enemyTypeNames = new HashSet<string>();
+        foreach (var enemyData in currentWave.EnemiesInWave)
+        {
+            if (enemyData != null)
+            {
+                enemyTypeNames.Add(enemyData.name);
+            }
+        }
+
+        return $"Typy wrogów: {enemyTypeNames.Count} – {string.Join(", ", enemyTypeNames)}";
+    }
+
+    public Dictionary<string, int> GetEnemyTypeCounts()
+    {
+        Dictionary<string, int> counts = new Dictionary<string, int>();
+        foreach (var enemyData in currentWave.EnemiesInWave)
+        {
+            string name = enemyData.name;
+            if (counts.ContainsKey(name)) counts[name]++;
+            else counts[name] = 1;
+        }
+        return counts;
+    }
+
+
 }
