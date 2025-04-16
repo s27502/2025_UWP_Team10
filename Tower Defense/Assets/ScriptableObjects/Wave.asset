@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6dff45483c7343449dcbfbde0e7219d, type: 3}
   m_Name: Wave
   m_EditorClassIdentifier: 
-  <EnemiesInWave>k__BackingField: []
-  <EnemySpawnRate>k__BackingField: 0
-  <NumberToSpawn>k__BackingField: 0
+  <EnemiesInWave>k__BackingField:
+  - {fileID: 11400000, guid: 98337766f4194344d8cde9e3334d7002, type: 2}
+  - {fileID: 11400000, guid: 98337766f4194344d8cde9e3334d7002, type: 2}
+  - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
+  - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
+  <EnemySpawnRate>k__BackingField: 2
+  <NumberToSpawn>k__BackingField: 2

@@ -6,6 +6,7 @@ using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Events;
 using Waves;
+using Wave = Waves.Wave;
 
 
 public class WaveManager : MonoBehaviour
@@ -73,7 +74,7 @@ public class WaveManager : MonoBehaviour
 
     private void HandleSpawning()
     {
-        if (enemiesSpawned >= currentWave.NumberToSpawn)
+        if (enemiesSpawned >= currentWave.numberToSpawn)
         {
             SetState(WaveState.Wait);
             return;
@@ -84,14 +85,14 @@ public class WaveManager : MonoBehaviour
         if (spawnTimer <= 0f)
         {
             SpawnEnemyFromWave();
-            spawnTimer = currentWave.EnemySpawnRate;
+            spawnTimer = currentWave.enemySpawnRate;
         }
     }
     
 
     private void SpawnEnemyFromWave()
     {
-        EnemyData enemyData = currentWave.EnemiesInWave[enemyIndex];
+        EnemyData enemyData = currentWave.enemiesInWave[enemyIndex];
         Enemy newEnemy = Instantiate(enemyData.Prefab, spawnPoint.position, spawnPoint.rotation);
         newEnemy.SetPath(path);
         newEnemy.Initialize(enemyData);
@@ -113,6 +114,7 @@ public class WaveManager : MonoBehaviour
         enemyIndex = 0;
         enemiesSpawned = 0;
         spawnTimer = 0f;
+        GameManager.Instance.gameObject.GetComponent<GameManager>().GetCurrentWaveEnemyTypes();
         SetState(WaveState.Spawn);
         OnWaveStart?.Invoke();
 
@@ -138,10 +140,10 @@ public class WaveManager : MonoBehaviour
     }
     public string GetEnemyTypesInCurrentWave()
     {
-        if (currentWave == null || currentWave.EnemiesInWave == null) return "";
+        if (currentWave == null || currentWave.enemiesInWave == null) return "";
 
         HashSet<string> enemyTypeNames = new HashSet<string>();
-        foreach (var enemyData in currentWave.EnemiesInWave)
+        foreach (var enemyData in currentWave.enemiesInWave)
         {
             if (enemyData != null)
             {
@@ -155,12 +157,12 @@ public class WaveManager : MonoBehaviour
     public Dictionary<string, int> GetEnemyTypeCounts()
     {
         
-/*        foreach (var enemyData in currentWave.EnemiesInWave)
+        foreach (var enemyData in currentWave.enemiesInWave)
         {
             string name = enemyData.name;
             if (counts.ContainsKey(name)) counts[name]++;
             else counts[name] = 1;
-        }*/
+        }
         return counts;
     }
 
