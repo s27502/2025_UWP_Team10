@@ -1,12 +1,9 @@
 using ScriptableObjects;
 
-namespace Waves
+[System.Serializable]
+public class Wave
 {
-    [System.Serializable]
-    public class Wave
-    {
-        public EnemyData[] enemiesInWave;
-        public int numberToSpawn;
-        public float enemySpawnRate;
-    }
+    public EnemyData[] EnemiesInWave;
+    public int NumberToSpawn;
+    public float EnemySpawnRate;
 }

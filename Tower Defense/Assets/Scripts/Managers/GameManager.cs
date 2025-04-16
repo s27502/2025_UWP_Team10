@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         return ServiceLocator.Instance.GetService<WaveManager>()?.GetEnemyTypesInCurrentWave();
     }
-    /*public string GetEnemyTypeInfoString()
+    public string GetEnemyTypeInfoString()
     {
         var waveManager = ServiceLocator.Instance.GetService<WaveManager>();
         var enemyCounts = waveManager?.GetEnemyTypeCounts();
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
         return string.Join(", ", parts);
     }
-*/
+
     private void Update()
     {
         if (currentWave <= _numberOfWaves)
