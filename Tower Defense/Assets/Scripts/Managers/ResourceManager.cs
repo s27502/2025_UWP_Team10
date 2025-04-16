@@ -31,6 +31,7 @@ using UnityEngine;
 
         public void AddMoney(int amount)
         {
+            if (_money < 0) return;
             _money += amount;
             OnMoneyChanged?.Invoke(_money);
         }

@@ -30,7 +30,6 @@ public class UpgradePanel : MonoBehaviour
         resourceManager.AddMoney( (int)(_tower.GetCost() * 0.7f));
         _tower.gameObject.SetActive(false);
         _placingField.SetTowerPlaced(false);
-        Debug.Log("Sell tower");
         Close();
     }
     public void UpgradeAtkSpeed()

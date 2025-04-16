@@ -16,11 +16,12 @@ public class GameManager : MonoBehaviour
         var counts = waveManager.GetEnemyTypeCounts();
 
         string enemyInfo = "Typy wrogów:\n";
+        /*
         foreach (var enemy in counts)
         {
             enemyInfo += $"{enemy.Key}: {enemy.Value}\n";
         }
-    
+    */
         return enemyInfo;
     }
     public void Awake()

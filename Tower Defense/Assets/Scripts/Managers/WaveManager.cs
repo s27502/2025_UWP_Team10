@@ -25,7 +25,7 @@ public class WaveManager : MonoBehaviour
     private int enemiesSpawned;
     private List<IEnemy> aliveEnemies = new List<IEnemy>();
     public UnityEvent OnWaveStart;
-
+    private Dictionary<string, int> counts;
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,6 +42,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        counts = new Dictionary<string, int>();
         _gameManager = ServiceLocator.Instance.GetService<GameManager>();
         currentWave = waves[ waveIndex];
         SetState(WaveState.Pause);
@@ -153,13 +154,13 @@ public class WaveManager : MonoBehaviour
 
     public Dictionary<string, int> GetEnemyTypeCounts()
     {
-        Dictionary<string, int> counts = new Dictionary<string, int>();
-        foreach (var enemyData in currentWave.EnemiesInWave)
+        
+/*        foreach (var enemyData in currentWave.EnemiesInWave)
         {
             string name = enemyData.name;
             if (counts.ContainsKey(name)) counts[name]++;
             else counts[name] = 1;
-        }
+        }*/
         return counts;
     }
 
