@@ -51,6 +51,7 @@ public class PlacingField : MonoBehaviour,
             _placementPanel.SetActive(false);
             _placementPanelActive = false;
             _towerPlaced = true;
+            ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX","Place_Tower");
         }
         else
         {

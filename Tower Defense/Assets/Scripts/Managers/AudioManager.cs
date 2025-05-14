@@ -90,6 +90,7 @@ public class AudioManager : MonoBehaviour
                 source.clip = clip;
                 source.Play();
                 _currentClipName = clipName;
+                Debug.Log(clipName + " played");
             }
         }
     }
