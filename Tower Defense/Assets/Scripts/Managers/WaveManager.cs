@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Enemies;
 using ScriptableObjects;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using Waves;
+using Random = UnityEngine.Random;
 
 
 public class WaveManager : MonoBehaviour
@@ -91,15 +94,19 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnEnemyFromWave()
     {
-        EnemyData enemyData = currentWave.EnemiesInWave[enemyIndex];
+        
+        
+        //EnemyData enemyData = currentWave.EnemiesInWave[enemyIndex];
+        EnemyData enemyData = currentWave.EnemiesInWave[(int) ((UnityEngine.Random.value) * (currentWave.EnemiesInWave.Length))];
         Enemy newEnemy = Instantiate(enemyData.Prefab, spawnPoint.position, spawnPoint.rotation);
         newEnemy.SetPath(path);
         newEnemy.Initialize(enemyData);
 
         aliveEnemies.Add(newEnemy);
-
-        enemyIndex++;
+        
+        
         enemiesSpawned++;
+        
     }
 
     public void StartWave()
