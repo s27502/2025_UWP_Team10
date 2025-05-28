@@ -14,7 +14,7 @@ public class HUDPresenter
         this.view = view;
 
         model.OnMoneyChanged += view.UpdateMoney;
-        model.OnHpChanged += view.UpdateHP;
+        model.OnHpChanged += view.UpdateHp ;
         model.OnWaveChanged += view.UpdateWave;
         model.OnEnemyTypesChanged += view.UpdateEnemyTypes;
         model.OnEnemyInfoChanged += view.UpdateEnemyInfo;

@@ -30,9 +30,10 @@ public class HUDView : MonoBehaviour
         moneyText.text = $"${value}";
     }
 
-    public void UpdateHP(int value)
+    public void UpdateHp(int value)
     {
         hpSlider.value = value;
+        Debug.Log("USTAWIAM hpSlider: " + hpSlider.value);
     }
 
     public void UpdateWave(int value)

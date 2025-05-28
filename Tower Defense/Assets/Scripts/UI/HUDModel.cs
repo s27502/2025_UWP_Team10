@@ -41,6 +41,7 @@ public class HUDModel
     {
         hp = value;
         OnHpChanged?.Invoke(hp);
+        Debug.Log("sethp changed");
     }
 
     public void SetWave(int value)

@@ -17,3 +17,4 @@ MonoBehaviour:
   <Prefab>k__BackingField: {fileID: 1911969328160490745, guid: 5551c69fce46f60428b6f009c53dcda7,
     type: 3}
   <Reward>k__BackingField: 10
+  <Damage>k__BackingField: 5
