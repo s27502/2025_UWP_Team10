@@ -29,6 +29,7 @@ public class WaveManager : MonoBehaviour
     private List<IEnemy> aliveEnemies = new List<IEnemy>();
     public UnityEvent OnWaveStart;
     private Dictionary<string, int> counts;
+    private SimpleEnemyFactory _factory = new(); 
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -98,9 +99,7 @@ public class WaveManager : MonoBehaviour
         
         //EnemyData enemyData = currentWave.EnemiesInWave[enemyIndex];
         EnemyData enemyData = currentWave.EnemiesInWave[(int) ((UnityEngine.Random.value) * (currentWave.EnemiesInWave.Length))];
-        Enemy newEnemy = Instantiate(enemyData.Prefab, spawnPoint.position, spawnPoint.rotation);
-        newEnemy.SetPath(path);
-        newEnemy.Initialize(enemyData);
+        IEnemy newEnemy = _factory.SpawnEnemy(enemyData, spawnPoint, path);
 
         aliveEnemies.Add(newEnemy);
         

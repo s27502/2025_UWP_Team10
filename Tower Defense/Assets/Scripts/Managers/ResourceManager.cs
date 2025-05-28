@@ -9,7 +9,7 @@ using UnityEngine;
         private int _hp;
 
         public event Action<int> OnMoneyChanged;
-        public event Action<int> OnHPChanged;
+        public event Action<int> OnHpChanged;
 
         private void Awake()
         {
@@ -24,7 +24,9 @@ using UnityEngine;
                 ServiceLocator.Instance.Register(this);
                 _money = 100;
                 _hp = 100;
+              
             }
+            
 
 
         }
@@ -53,7 +55,7 @@ using UnityEngine;
             _hp -= amount;
             if (_hp < 0) _hp = 0;
 
-            OnHPChanged?.Invoke(_hp);
+            OnHpChanged?.Invoke(_hp);
 
             if (_hp <= 0)
             {

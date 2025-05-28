@@ -7,7 +7,7 @@ public class HUDModel
 {
     
     public event Action<int> OnMoneyChanged;
-    public event Action<int> OnHPChanged;
+    public event Action<int> OnHpChanged;
     public event Action<int> OnWaveChanged;
 
     private int money;
@@ -17,7 +17,8 @@ public class HUDModel
     private string enemyInfo;
     public event Action<string> OnEnemyTypesChanged;
     public event Action<string> OnEnemyInfoChanged;
-
+    
+    
     public void SetEnemyInfo(string value)
     {
         enemyInfo = value;
@@ -39,7 +40,7 @@ public class HUDModel
     public void SetHP(int value)
     {
         hp = value;
-        OnHPChanged?.Invoke(hp);
+        OnHpChanged?.Invoke(hp);
     }
 
     public void SetWave(int value)

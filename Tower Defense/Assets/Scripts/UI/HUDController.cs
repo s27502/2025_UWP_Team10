@@ -25,7 +25,7 @@ public class HUDController : MonoBehaviour
 
         
         resourceManager.OnMoneyChanged += model.SetMoney;
-        resourceManager.OnHPChanged += model.SetHP;
+        resourceManager.OnHpChanged += model.SetHP;
         
        
         var gameManager = ServiceLocator.Instance.GetService<GameManager>();
