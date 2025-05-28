@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Towers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class BasicTower : MonoBehaviour, IPointerClickHandler
+public class BasicTower : MonoBehaviour, IPointerClickHandler, ITower
 {
     [SerializeField] private int _cost;
     [SerializeField] private float _atkSpeed;
@@ -33,5 +34,10 @@ public class BasicTower : MonoBehaviour, IPointerClickHandler
     public void setUpgradePanelActive(bool active)
     {
         _upgradePanelActive = active;
+    }
+
+    public void Defend()
+    {
+        throw new System.NotImplementedException();
     }
 }
