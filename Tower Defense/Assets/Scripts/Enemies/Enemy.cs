@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class Enemy : MonoBehaviour, IEnemy
+    public class Enemy : MonoBehaviour, IEnemy, IPoolableObject
     {
         protected EnemyData data;
         private float currentHP;
@@ -12,6 +12,8 @@ namespace Enemies
         private int pathIndex = 0;
         private const float PathThreshold = 0.1f;
         private Vector3 direction;
+        private IObjectPool _pool;
+
         public void Initialize(EnemyData enemyData)
         {
             data = enemyData;
@@ -76,13 +78,34 @@ namespace Enemies
         {
             // TODO play VFX, sound and increase money
             ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            _pool?.ReleaseObject(this);
         }
 
         public void Kill()
         {
             ServiceLocator.Instance.GetService<ResourceManager>()?.AddMoney(data.Reward);
             Die();
+        }
+
+        public void Spawn(Vector3 position, Vector3 forwardDirection)
+        {
+            gameObject.SetActive(true);
+            transform.position = position;
+            transform.forward = forwardDirection;
+    
+            currentHP = data.MaxHP;
+            pathIndex = 0;
+        }
+
+        public void Despawn()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void SetPool(IObjectPool pool)
+        {
+            _pool = pool;
         }
     }
 }

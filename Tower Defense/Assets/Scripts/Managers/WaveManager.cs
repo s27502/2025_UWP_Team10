@@ -29,7 +29,7 @@ public class WaveManager : MonoBehaviour
     private List<IEnemy> aliveEnemies = new List<IEnemy>();
     public UnityEvent OnWaveStart;
     private Dictionary<string, int> counts;
-    private SimpleEnemyFactory _factory = new(); 
+    private SimpleEnemyFactory _factory = new (); 
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -46,6 +46,7 @@ public class WaveManager : MonoBehaviour
 
     private void Start()
     {
+        
         counts = new Dictionary<string, int>();
         _gameManager = ServiceLocator.Instance.GetService<GameManager>();
         currentWave = waves[ waveIndex];
