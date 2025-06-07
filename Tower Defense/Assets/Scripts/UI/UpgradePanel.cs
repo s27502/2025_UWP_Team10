@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Towers;
 using UnityEngine;
 
 public class UpgradePanel : MonoBehaviour
 {
-    private BasicTower _tower;
+    private Tower _tower;
     private PlacingField _placingField;
     [SerializeField] ResourceManager resourceManager;
 
-    public void SetBasicTower(BasicTower tower)
+    public void SetTower(Tower tower)
     {
         _tower = tower;
-        Debug.Log("Tower set");
-        Debug.Log(_tower);
     }
 
     public void SetPlacingField(PlacingField placingField)
