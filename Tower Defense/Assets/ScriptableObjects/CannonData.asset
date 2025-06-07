@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c5409cc6310974b85177c59a199a0e, type: 3}
   m_Name: CannonData
   m_EditorClassIdentifier: 
-  <TowerName>k__BackingField: 
-  <Cost>k__BackingField: 0
-  <AttackSpeed>k__BackingField: 0
-  <Damage>k__BackingField: 0
-  <Prefab>k__BackingField: {fileID: 0}
+  <TowerName>k__BackingField: Cannon
+  <Cost>k__BackingField: 100
+  <AttackSpeed>k__BackingField: 1
+  <Damage>k__BackingField: 50
+  <Prefab>k__BackingField: {fileID: 7351771706100564634, guid: 84c015623557f0347b169e4077d0c3e9,
+    type: 3}
