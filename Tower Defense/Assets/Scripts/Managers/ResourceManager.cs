@@ -1,4 +1,5 @@
 ﻿using System;
+using Tutorial;
 using UnityEngine;
 
 public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
@@ -8,6 +9,7 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 
     public event Action<int> OnMoneyChanged;
     public event Action<int> OnHpChanged;
+    private TutorialUIManager tutorialManager;
 
     protected override void Awake()
     {
@@ -15,6 +17,7 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
         if (Instance != this) return;
 
         ServiceLocator.Instance.Register(this);
+        tutorialManager = GameObject.FindObjectOfType<TutorialUIManager>();
         _money = 100;
         _hp = 100;
     }
@@ -28,6 +31,12 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 
     public bool SpendMoney(int amount)
     {
+        if (tutorialManager == null)
+            tutorialManager = GameObject.FindObjectOfType<TutorialUIManager>();
+
+        if (tutorialManager != null)
+            tutorialManager.HideAttackMessage();
+        
         if (_money >= amount)
         {
             _money -= amount;
@@ -40,9 +49,11 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 
     public void DealDamage(int amount)
     {
+        if (tutorialManager != null) tutorialManager.ShowAttackMessage();
+        
         _hp -= amount;
         if (_hp < 0) _hp = 0;
-
+        
         OnHpChanged?.Invoke(_hp);
 
         if (_hp <= 0)

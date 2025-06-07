@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Towers;
+using Tutorial;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
@@ -20,8 +21,11 @@ public class BasicTower : MonoBehaviour, IPointerClickHandler, ITower
     public float GetDmg() => _dmg;
     public void OnPointerClick(PointerEventData eventData)
     {
+        
+        
         if (!_upgradePanelActive)
         {
+            
             _upgradePanel = ServiceLocator.Instance.GetService<HUDController>().GetHUDView().gameObject.transform.Find("UpgradePanel").gameObject;
             _upgradePanel.transform.position = eventData.position;
             _upgradePanel.SetActive(true);
@@ -34,6 +38,9 @@ public class BasicTower : MonoBehaviour, IPointerClickHandler, ITower
     public void setUpgradePanelActive(bool active)
     {
         _upgradePanelActive = active;
+        
+        
+        
     }
 
     public void Defend()
