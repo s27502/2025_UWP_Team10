@@ -2,36 +2,27 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : SingletonDoNotDestroy<AudioManager>
 {
-    public static AudioManager Instance { get; private set; }
-
     [SerializeField] private AudioSource _soundtrackAudioSource;
     [SerializeField] private AudioSource _SFXAudioSource;
     [SerializeField] private List<AudioClip> sfxClips;
     [SerializeField] private List<AudioClip> soundtrackClips;
+
     private string _currentClipName;
-
     private GameState _gameState;
+
     private Dictionary<string, Dictionary<string, AudioClip>> _audioLibrary;
-    
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+        base.Awake();
+        if (Instance != this) return;
 
-            if (ServiceLocator.Instance != null)
-                ServiceLocator.Instance.Register(this);
+        if (ServiceLocator.Instance != null)
+            ServiceLocator.Instance.Register(this);
 
-            InitializeAudioLibrary();
-        }
+        InitializeAudioLibrary();
     }
 
     private void Update()
@@ -45,11 +36,17 @@ public class AudioManager : MonoBehaviour
 
         var sfx = new Dictionary<string, AudioClip>();
         foreach (var clip in sfxClips)
-            sfx[clip.name] = clip;
+        {
+            if (clip != null)
+                sfx[clip.name] = clip;
+        }
 
         var music = new Dictionary<string, AudioClip>();
         foreach (var clip in soundtrackClips)
-            music[clip.name] = clip;
+        {
+            if (clip != null)
+                music[clip.name] = clip;
+        }
 
         _audioLibrary["sfx"] = sfx;
         _audioLibrary["soundtracks"] = music;
@@ -83,7 +80,7 @@ public class AudioManager : MonoBehaviour
             {
                 if (source == null)
                     source = _SFXAudioSource;
-                
+
                 if (source.clip == clip && source.isPlaying)
                     return;
 
@@ -92,6 +89,14 @@ public class AudioManager : MonoBehaviour
                 _currentClipName = clipName;
                 Debug.Log(clipName + " played");
             }
+            else
+            {
+                Debug.LogWarning($"Clip '{clipName}' not found in category '{category}'.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Audio category '{category}' not found.");
         }
     }
 }

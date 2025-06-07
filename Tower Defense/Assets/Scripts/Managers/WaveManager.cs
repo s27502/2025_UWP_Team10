@@ -1,58 +1,47 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Enemies;
 using ScriptableObjects;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using Waves;
-using Random = UnityEngine.Random;
 
-
-public class WaveManager : MonoBehaviour
+public class WaveManager : SingletonDoNotDestroy<WaveManager>
 {
-   
-    public static WaveManager Instance { get; private set; }
     public UnityEvent OnWaveComplete;
-    private GameManager _gameManager; 
+    public UnityEvent OnWaveStart;
+
     [SerializeField] public Wave[] waves;
-    private Wave currentWave;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform[] path;
-    private int  waveIndex = 0;
+
+    private GameManager _gameManager;
+    private Wave currentWave;
+    private int waveIndex = 0;
     private WaveState currentState;
     private int enemyIndex = 0;
     private float spawnTimer;
     private int enemiesSpawned;
-    private List<IEnemy> aliveEnemies = new List<IEnemy>();
-    public UnityEvent OnWaveStart;
-    private Dictionary<string, int> counts;
-    private SimpleEnemyFactory _factory = new (); 
-    public void Awake()
+
+    private readonly List<IEnemy> aliveEnemies = new();
+    private readonly Dictionary<string, int> counts = new();
+    private readonly SimpleEnemyFactory _factory = new();
+
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this; 
-        }
-       
-        ServiceLocator.Instance.Register<WaveManager>(this);
+        base.Awake();
+        if (Instance != this) return;
+
+        ServiceLocator.Instance.Register(this);
     }
 
     private void Start()
     {
-        
-        counts = new Dictionary<string, int>();
         _gameManager = ServiceLocator.Instance.GetService<GameManager>();
-        currentWave = waves[ waveIndex];
+        currentWave = waves[waveIndex];
         SetState(WaveState.Pause);
     }
-    
+
     private void Update()
     {
         switch (currentState)
@@ -70,11 +59,9 @@ public class WaveManager : MonoBehaviour
                 break;
 
             case WaveState.Pause:
-                // wait for player input
                 break;
         }
     }
-    
 
     private void HandleSpawning()
     {
@@ -92,50 +79,49 @@ public class WaveManager : MonoBehaviour
             spawnTimer = currentWave.EnemySpawnRate;
         }
     }
-    
 
     private void SpawnEnemyFromWave()
     {
-        
-        
-        //EnemyData enemyData = currentWave.EnemiesInWave[enemyIndex];
-        EnemyData enemyData = currentWave.EnemiesInWave[(int) ((UnityEngine.Random.value) * (currentWave.EnemiesInWave.Length))];
+        EnemyData enemyData = currentWave.EnemiesInWave[
+            UnityEngine.Random.Range(0, currentWave.EnemiesInWave.Length)
+        ];
         IEnemy newEnemy = _factory.SpawnEnemy(enemyData, spawnPoint, path);
 
         aliveEnemies.Add(newEnemy);
-        
-        
         enemiesSpawned++;
         
+        string name = enemyData.name;
+        if (counts.ContainsKey(name)) counts[name]++;
+        else counts[name] = 1;
     }
 
     public void StartWave()
     {
+        if (waveIndex >= waves.Length) return;
+
         OnWaveStart?.Invoke();
 
-        if (waveIndex >= waves.Length) return;
         currentWave = waves[waveIndex];
         waveIndex++;
 
         enemyIndex = 0;
         enemiesSpawned = 0;
         spawnTimer = 0f;
-        SetState(WaveState.Spawn);
-        OnWaveStart?.Invoke();
+        counts.Clear();
 
+        SetState(WaveState.Spawn);
     }
-    
+
     private void SetState(WaveState newState)
     {
         currentState = newState;
     }
-    
-    
+
     public void RemoveEnemy(Enemy enemy)
     {
-        aliveEnemies.Remove(enemy);  
+        aliveEnemies.Remove(enemy);
     }
-    
+
     private void OnDestroy()
     {
         if (Instance == this)
@@ -143,11 +129,12 @@ public class WaveManager : MonoBehaviour
             ServiceLocator.Instance.UnregisterService<WaveManager>();
         }
     }
+
     public string GetEnemyTypesInCurrentWave()
     {
-        if (currentWave == null || currentWave.EnemiesInWave == null) return "";
+        if (currentWave?.EnemiesInWave == null) return "";
 
-        HashSet<string> enemyTypeNames = new HashSet<string>();
+        HashSet<string> enemyTypeNames = new();
         foreach (var enemyData in currentWave.EnemiesInWave)
         {
             if (enemyData != null)
@@ -161,15 +148,6 @@ public class WaveManager : MonoBehaviour
 
     public Dictionary<string, int> GetEnemyTypeCounts()
     {
-        
-/*        foreach (var enemyData in currentWave.EnemiesInWave)
-        {
-            string name = enemyData.name;
-            if (counts.ContainsKey(name)) counts[name]++;
-            else counts[name] = 1;
-        }*/
-        return counts;
+        return new Dictionary<string, int>(counts); 
     }
-
-
 }
