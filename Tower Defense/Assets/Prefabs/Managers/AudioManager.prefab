@@ -178,8 +178,8 @@ MonoBehaviour:
   _SFXAudioSource: {fileID: 8102701746057350390}
   sfxClips: []
   soundtrackClips:
-  - {fileID: 8300000, guid: 6f652c8886dd53f4c898935376bcbc2f, type: 3}
-  - {fileID: 8300000, guid: a22c86f5423e7ec419882df0126e5c10, type: 3}
+  - {fileID: 8300000, guid: 3ec7ccf6effa3cf49941a763db58b4b0, type: 3}
+  - {fileID: 8300000, guid: 3002c9e3c935fd04c9a130b413593801, type: 3}
 --- !u!1 &8587615203386850771
 GameObject:
   m_ObjectHideFlags: 0
