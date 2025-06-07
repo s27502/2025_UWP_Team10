@@ -6,10 +6,6 @@ public class ServiceLocator : SingletonDoNotDestroy<ServiceLocator>
 {
     private readonly Dictionary<Type, object> _services = new();
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     private void Update()
     {

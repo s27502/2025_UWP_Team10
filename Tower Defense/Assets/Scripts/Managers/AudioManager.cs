@@ -23,11 +23,14 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
             ServiceLocator.Instance.Register(this);
 
         InitializeAudioLibrary();
-    }
 
-    private void Update()
-    {
-        PlayAmbient();
+        var gm = ServiceLocator.Instance.GetService<GameManager>();
+        if (gm != null)
+        {
+            gm.OnGameStateChanged += PlayAmbient;
+        }
+        
+        PlayAmbient(gm.GetGameState());
     }
 
     private void InitializeAudioLibrary()
@@ -51,15 +54,19 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
         _audioLibrary["sfx"] = sfx;
         _audioLibrary["soundtracks"] = music;
     }
-
-    public void PlayAmbient()
+    
+    private void OnDestroy()
     {
-        var gm = ServiceLocator.Instance.GetService<GameManager>();
-        if (gm == null) return;
+        var gm = ServiceLocator.Instance?.GetService<GameManager>();
+        if (gm != null)
+        {
+            gm.OnGameStateChanged -= PlayAmbient;
+        }
+    }
 
-        _gameState = gm.GetGameState();
-
-        switch (_gameState)
+    public void PlayAmbient(GameState state)
+    {
+        switch (state)
         {
             case GameState.BUILDING:
                 PlayClip("soundtracks", "BuildingMusic", _soundtrackAudioSource);
