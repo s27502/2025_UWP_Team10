@@ -2,28 +2,17 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServiceLocator : MonoBehaviour
+public class ServiceLocator : SingletonDoNotDestroy<ServiceLocator>
 {
-    public static ServiceLocator Instance { get; private set; }
-
     private readonly Dictionary<Type, object> _services = new();
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Debug.LogWarning("Duplicate ServiceLocator found. Destroying this one.");
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
     }
-    
+
     private void Update()
     {
-        // Wciśnij F9 żeby wyświetlić listę serwisów
         if (Input.GetKeyDown(KeyCode.F9))
         {
             DebugServices();
@@ -55,12 +44,9 @@ public class ServiceLocator : MonoBehaviour
     public void UnregisterService<T>()
     {
         var type = typeof(T);
-        if (_services.ContainsKey(type))
-        {
-            _services.Remove(type);
-        }
+        _services.Remove(type);
     }
-    
+
     public void DebugServices()
     {
         if (_services.Count == 0)
