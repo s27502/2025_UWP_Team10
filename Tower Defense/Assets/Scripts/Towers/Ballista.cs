@@ -23,7 +23,7 @@ public class Ballista : Tower
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("FlyingEnemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null && !enemiesInRange.Contains(enemy))
@@ -33,7 +33,7 @@ public class Ballista : Tower
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("FlyingEnemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null && enemiesInRange.Contains(enemy))
