@@ -1,5 +1,6 @@
 using System;
 using System.Resources;
+using Towers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -40,14 +41,14 @@ public class PlacingField : MonoBehaviour,
 
     }
 
-    public void PlaceTower()
+    public void PlaceTower() 
     {
         _upgradePanel = ServiceLocator.Instance.GetService<HUDController>().GetHUDView().gameObject.transform.Find("UpgradePanel").gameObject;
         _upgradePanel.GetComponent<UpgradePanel>().SetPlacingField(this);
-        if (_tower.gameObject.GetComponent<BasicTower>().GetCost() <= _resourceManager.GetMoney())
+        if (_tower.gameObject.GetComponent<Tower>().GetCost() <= _resourceManager.GetMoney())
         { 
             _tower.SetActive(true);
-            _resourceManager.SpendMoney(_tower.gameObject.GetComponent<BasicTower>().GetCost());
+            _resourceManager.SpendMoney(_tower.gameObject.GetComponent<Cannon>().GetCost());
             _placementPanel.SetActive(false);
             _placementPanelActive = false;
             _towerPlaced = true;

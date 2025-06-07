@@ -29,6 +29,8 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
         {
             gm.OnGameStateChanged += PlayAmbient;
         }
+        
+        PlayAmbient(gm.GetGameState());
     }
 
     private void InitializeAudioLibrary()
