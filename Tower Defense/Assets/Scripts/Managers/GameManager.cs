@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     private int currentWave;
     private GameState _gameState;
     private WaveManager _waveManager;
+    public event Action<GameState> OnGameStateChanged;
+
 
     public string GetEnemyTypesAndCountForWave()
     {
@@ -22,7 +25,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
         if (Instance != this) return;
 
         ServiceLocator.Instance.Register(this);
-        _gameState = GameState.BUILDING;
+        SetGameState(GameState.BUILDING);
         currentWave = 1;
 
         _waveManager = ServiceLocator.Instance.GetService<WaveManager>();
@@ -62,7 +65,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
                 case GameState.BUILDING:
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        _gameState = GameState.DEFENDING;
+                        SetGameState(GameState.DEFENDING);
                         _waveManager.StartWave();
                     }
                     break;
@@ -78,13 +81,22 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     {
         if (currentWave <= _numberOfWaves)
         {
-            _gameState = GameState.BUILDING;
+            SetGameState(GameState.BUILDING);
             currentWave++;
             ServiceLocator.Instance.GetService<HUDController>()?.SetWave(currentWave);
         }
         else
         {
             Debug.Log("All waves completed!");
+        }
+    }
+    
+    private void SetGameState(GameState newState)
+    {
+        if (_gameState != newState)
+        {
+            _gameState = newState;
+            OnGameStateChanged?.Invoke(_gameState);
         }
     }
 
