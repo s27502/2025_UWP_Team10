@@ -5,17 +5,10 @@ namespace Towers
 {
     public class Tower : MonoBehaviour, IPointerClickHandler, ITower
     {
-        protected TowerData data;
+        [SerializeField] protected TowerData data;
         private GameObject _upgradePanel;
         private bool _upgradePanelActive;
         private IPointerClickHandler _pointerClickHandlerImplementation;
-
-        public void Initialize(TowerData towerData)
-        {
-            data = towerData;
-        }
-        
-        
         
         
         public void OnPointerClick(PointerEventData eventData)
@@ -36,7 +29,7 @@ namespace Towers
             _upgradePanelActive = active;
         }
 
-        public void Defend()
+        public virtual void Defend()
         {
             throw new System.NotImplementedException();
         }
