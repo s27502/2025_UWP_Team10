@@ -7,6 +7,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     private int currentWave;
     private GameState _gameState;
     private WaveManager _waveManager;
+    
 
     public string GetEnemyTypesAndCountForWave()
     {
