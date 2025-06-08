@@ -7,7 +7,7 @@ public class Ballista : Tower
 {
     private List<Enemy> enemiesInRange = new();
     private float attackCooldown;
-
+    
     private void Update()
     {
         if (!gameObject.activeSelf) return;
@@ -64,6 +64,8 @@ public class Ballista : Tower
 
         Debug.Log($"Attacking enemy: {target.name} for {data.Damage} dmg");
         target.TakeDamage(data.Damage);
+        ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Balista_Shot");
+        
     }
 
 }
