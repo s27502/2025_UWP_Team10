@@ -6,6 +6,7 @@ namespace Towers
     public class Tower : MonoBehaviour, IPointerClickHandler, ITower
     {
         [SerializeField] protected TowerData data;
+                                                 
         private GameObject _upgradePanel;
         private bool _upgradePanelActive;
         private IPointerClickHandler _pointerClickHandlerImplementation;
@@ -38,5 +39,11 @@ namespace Towers
         public int GetCost() => data.Cost;
         public float GetAttackSpeed() => data.AttackSpeed;
         public float GetDamage() => data.Damage;
+
+        public TowerData GetData()
+        {
+            return data;
+        }
+        
     }
 }
