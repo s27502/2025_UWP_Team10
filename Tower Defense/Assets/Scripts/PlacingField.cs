@@ -13,9 +13,9 @@ public class PlacingField : MonoBehaviour,
     private bool _placementPanelActive;
     private bool _towerPlaced;
     private GameObject _upgradePanel;
+
     private AbstractTowerFactory _cannonFactory;
     private AbstractTowerFactory _ballistaFactory;
-
     private ITower _placedTower;
 
     private void Awake()
@@ -69,8 +69,13 @@ public class PlacingField : MonoBehaviour,
     private void TryPlaceTower(AbstractTowerFactory factory)
     {
         _resourceManager.SpendMoney(factory.GetTowerData().Cost);
-        _placedTower = factory.CreateTower(transform.position);
+        // _placedTower = factory.CreateTower(transform.position);
+        Tower tower = (Tower)factory.CreateTower(transform.position);
+        tower.SetPlacingField(this);
+        _placedTower = tower;
         _towerPlaced = true;
+
+
         ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Place_Tower");
     }
 
