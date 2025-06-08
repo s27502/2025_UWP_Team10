@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60ad093174047f7b5584e1c4e9c439e, type: 3}
   m_Name: SlowEnemy
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 5
-  <MaxHP>k__BackingField: 100
+  <Speed>k__BackingField: 1
+  <MaxHP>k__BackingField: 150
   <Prefab>k__BackingField: {fileID: 6402351554884628738, guid: 0607783834b68ac4181abf6bf7b1e3e8,
     type: 3}
   <Reward>k__BackingField: 10

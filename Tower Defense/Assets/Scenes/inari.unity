@@ -1188,7 +1188,7 @@ PrefabInstance:
     - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
       propertyPath: sfxClips.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
@@ -1200,6 +1200,16 @@ PrefabInstance:
       propertyPath: sfxClips.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: c8c11b06a8bbca04fadbb72b518f0040, type: 3}
+    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
+        type: 3}
+      propertyPath: sfxClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7218c34d0a8eaea4598a2815f567c063, type: 3}
+    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
+        type: 3}
+      propertyPath: sfxClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 085bbd38bc3d8ae43b97603a1ef4a11a, type: 3}
     - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
       propertyPath: soundtrackClips.Array.data[0]
@@ -1377,6 +1387,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 7268653869908477044, guid: e9fa2856703824646b86de273913149c, type: 3}
     - {fileID: 7167246398966795493, guid: e9fa2856703824646b86de273913149c, type: 3}
+    - {fileID: 2417219762547237388, guid: e9fa2856703824646b86de273913149c, type: 3}
+    - {fileID: 6039349069401509189, guid: e9fa2856703824646b86de273913149c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9fa2856703824646b86de273913149c, type: 3}
