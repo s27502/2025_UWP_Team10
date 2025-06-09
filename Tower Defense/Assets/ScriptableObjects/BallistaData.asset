@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BallistaData
   m_EditorClassIdentifier: 
   <TowerName>k__BackingField: Ballista
-  <Cost>k__BackingField: 150
+  <Cost>k__BackingField: 10
   <AttackSpeed>k__BackingField: 0.5
   <Damage>k__BackingField: 100
   <Prefab>k__BackingField: {fileID: 7942044205121157308, guid: 9ea32d242e4c2c44d848c61863ed7db7,
