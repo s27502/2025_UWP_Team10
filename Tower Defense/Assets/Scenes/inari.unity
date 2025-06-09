@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EventMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_MaxRayIntersections: 0
 --- !u!1 &410087039
 GameObject:
@@ -907,24 +907,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 339835708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1637984163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5350903601626583411, guid: 4613f4c25117f13479c6ba30e2b11032,
-    type: 3}
-  m_PrefabInstance: {fileID: 2111826535}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1661979781 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 134523746409427320, guid: 4613f4c25117f13479c6ba30e2b11032,
-    type: 3}
-  m_PrefabInstance: {fileID: 2111826535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689041243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,40 +1009,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 42396598307409114, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: _ballistaPriceText
-      value: 
-      objectReference: {fileID: 1637984163}
-    - target: {fileID: 134523746409427320, guid: 4613f4c25117f13479c6ba30e2b11032,
+    - target: {fileID: 3601988311578060015, guid: 4613f4c25117f13479c6ba30e2b11032,
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 419156673762629505, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlaceCannon
-      objectReference: {fileID: 0}
-    - target: {fileID: 2092099883065698470, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.74846613
-      objectReference: {fileID: 0}
-    - target: {fileID: 2092099883065698470, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 54.15033
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893533905727971915, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 320.009
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893533905727971915, guid: 4613f4c25117f13479c6ba30e2b11032,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -35.004517
       objectReference: {fileID: 0}
     - target: {fileID: 4490498494508131882, guid: 4613f4c25117f13479c6ba30e2b11032,
         type: 3}
@@ -1332,11 +1284,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ServiceLocator
       objectReference: {fileID: 0}
-    - target: {fileID: 8412860308493910974, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: gameOverScreen
-      value: 
-      objectReference: {fileID: 1661979781}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
