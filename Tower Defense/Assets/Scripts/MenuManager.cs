@@ -7,12 +7,12 @@ public class MenuManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene"); // Zmień na faktyczną nazwę sceny z grą
+        SceneManager.LoadScene("inari"); 
     }
 
     public void StartTutorial()
     {
-        SceneManager.LoadScene("Tutorial"); // Zmień na faktyczną nazwę sceny z tutorialem
+        SceneManager.LoadScene("Tutorial"); 
     }
 
     public void QuitGame()
