@@ -79,6 +79,7 @@ namespace Enemies
         public void Die()
         {
             // TODO play VFX, sound and increase money
+            ServiceLocator.Instance.GetService<ResourceManager>().AddMoney(data.Reward);
             ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
             //Destroy(gameObject);
             _pool?.ReleaseObject(this);

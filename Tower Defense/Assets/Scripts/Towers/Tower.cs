@@ -52,15 +52,27 @@ namespace Towers
 
         public virtual void Defend()
         {
+            CleanupEnemies();
+
             if (enemiesInRange.Count == 0) return;
 
-            Enemy target = enemiesInRange[0];
-
-            if (target == null)
+            Enemy target = null;
+            
+            while (enemiesInRange.Count > 0)
             {
-                enemiesInRange.RemoveAt(0);
-                return;
+                target = enemiesInRange[0];
+
+                if (target == null || !target.gameObject.activeSelf)
+                {
+                    enemiesInRange.RemoveAt(0);
+                    continue;
+                }
+
+                break;
             }
+
+            if (target == null) return;
+
 
             Vector3 direction = target.transform.position - transform.position;
             direction.y = 0f;
@@ -70,13 +82,14 @@ namespace Towers
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
                 transform.rotation = lookRotation;
             }
-
-            Debug.Log($"Attacking enemy: {target.name} for {data.Damage} dmg");
+            
             target.TakeDamage(data.Damage);
 
-            string sound = GetAttackSound();
-            ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", sound);
+            Debug.Log($"Attacking enemy: {target.name} for {data.Damage} dmg");
+            ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", GetAttackSound());
         }
+
+
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -108,5 +121,11 @@ namespace Towers
         {
             _placingField = placingField;
         }
+        
+        private void CleanupEnemies()
+        {
+            enemiesInRange.RemoveAll(e => e == null || !e.gameObject.activeSelf);
+        }
+
     }
 }
