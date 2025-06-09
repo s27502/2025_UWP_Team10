@@ -30,6 +30,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
         if (_gameState == GameState.BUILDING && currentWave <= _numberOfWaves)
         {
             SetGameState(GameState.DEFENDING);
+            ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Wave_Start");
             _waveManager.StartWave();
         }
     }

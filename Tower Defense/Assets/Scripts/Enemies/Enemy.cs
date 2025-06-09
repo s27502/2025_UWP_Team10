@@ -73,16 +73,25 @@ namespace Enemies
             {
                 Kill();
             }
-            ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Enemy_Hit");
+            
         }
 
         public void Die()
         {
             // TODO play VFX, sound
+            if (CompareTag("Enemy"))
+            {
+                ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "EnemyDie1");
+            }
+            else
+            {
+                ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "EnemyDie2");
+            }
 
             ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
             //Destroy(gameObject);
             _pool?.ReleaseObject(this);
+
         }
 
         public void Kill()

@@ -1431,11 +1431,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 294916664051016302, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1139235512501101116, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
       propertyPath: spawnPoint
@@ -1486,61 +1481,6 @@ PrefabInstance:
       propertyPath: path.Array.data[8]
       value: 
       objectReference: {fileID: 1586429138}
-    - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: startWaveAction.m_Name
-      value: Start Wave
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: startWaveAction.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: startWaveAction.m_SingletonActionBindings.Array.data[0].m_Id
-      value: ad74b83d-b720-426e-b424-00a545ceac51
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: startWaveAction.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <Keyboard>/space
-      objectReference: {fileID: 0}
-    - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: startWaveAction.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Start Wave
-      objectReference: {fileID: 0}
-    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: sfxClips.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: sfxClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 34ab2a4e3054846469903c62c9be8ffb, type: 3}
-    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: sfxClips.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: c8c11b06a8bbca04fadbb72b518f0040, type: 3}
-    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: sfxClips.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 7218c34d0a8eaea4598a2815f567c063, type: 3}
-    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: sfxClips.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 085bbd38bc3d8ae43b97603a1ef4a11a, type: 3}
-    - target: {fileID: 4954640637806581341, guid: fc390fd06092fcb40ae1b5026cd410d7,
-        type: 3}
-      propertyPath: soundtrackClips.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 6b14607eba7120444a396c3fe0e45394, type: 3}
     - target: {fileID: 6051743348302365668, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
       propertyPath: m_LocalPosition.x
