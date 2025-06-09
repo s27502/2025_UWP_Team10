@@ -26,7 +26,7 @@ public class UpgradePanel : MonoBehaviour
             Debug.Log("nulllll");
             return;
         }
-        var price = _tower.GetCost() * 2.5f;
+        var price = _tower.GetCost() * 0.3f;
         if (!(resourceManager.GetMoney() >= price))return;
         resourceManager.AddMoney( (int)(-price));
         _tower.setUpgradePanelActive(false);
@@ -42,7 +42,7 @@ public class UpgradePanel : MonoBehaviour
             return;
         }
         
-        resourceManager.AddMoney( (int)(_tower.GetCost() * 1.5f));
+        resourceManager.AddMoney( (int)(_tower.GetCost() * 0.7f));
         _tower.setUpgradePanelActive(false);
         _placingField.SetTowerPlaced(false);
         Destroy(_tower.gameObject);
@@ -57,7 +57,7 @@ public class UpgradePanel : MonoBehaviour
             return;
         }
 
-        var price = _tower.GetCost() * 2.8f;
+        var price = _tower.GetCost() * 0.4f;
         if(!(resourceManager.GetMoney() >= price))return;
         resourceManager.AddMoney( (int)(-price));
         _tower.setUpgradePanelActive(false);
