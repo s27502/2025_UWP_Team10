@@ -64,6 +64,7 @@ public class Cannon : Tower
 
         Debug.Log($"Attacking enemy: {target.name} for {data.Damage} dmg");
         target.TakeDamage(data.Damage);
+        ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Cannon_Shot");
     }
 
 }

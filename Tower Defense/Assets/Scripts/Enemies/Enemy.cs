@@ -66,12 +66,14 @@ namespace Enemies
 
         public void TakeDamage(float amount)
         {
+            
             currentHP -= amount;
 
             if (currentHP <= 0)
             {
                 Die();
             }
+            ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Enemy_Hit");
         }
 
         public void Die()

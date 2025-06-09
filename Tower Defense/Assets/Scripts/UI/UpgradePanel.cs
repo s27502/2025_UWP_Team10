@@ -26,10 +26,18 @@ public class UpgradePanel : MonoBehaviour
     }
     public void SellTower()
     {
+        if (_tower == null || _placingField == null)
+        {
+            Debug.Log("nulllll");
+            return;
+        }
+        
         resourceManager.AddMoney( (int)(_tower.GetCost() * 0.7f));
-        _tower.gameObject.SetActive(false);
+        _tower.setUpgradePanelActive(false);
         _placingField.SetTowerPlaced(false);
+        Destroy(_tower.gameObject);
         Close();
+        
     }
     public void UpgradeAtkSpeed()
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60ad093174047f7b5584e1c4e9c439e, type: 3}
   m_Name: FastEnemy
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 10
+  <Speed>k__BackingField: 2
   <MaxHP>k__BackingField: 50
   <Prefab>k__BackingField: {fileID: 1911969328160490745, guid: 5551c69fce46f60428b6f009c53dcda7,
     type: 3}

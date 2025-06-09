@@ -27,17 +27,5 @@ namespace Enemies
             obj.Spawn(spawnPoint.position, (path[0].position - spawnPoint.position).normalized);
             return obj;
         }
-        
-        
-        
-        /*public IEnemy SpawnEnemy(EnemyData enemyData, Transform spawnPoint, Transform[] path)
-        {
-            Enemy newEnemy = Instantiate(enemyData.Prefab, spawnPoint.position, spawnPoint.rotation);
-            newEnemy.SetPath(path);
-            newEnemy.Initialize(enemyData);
-            return newEnemy;
-        }*/
-
-        
     }
 }
