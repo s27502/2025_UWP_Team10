@@ -10,7 +10,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     private GameState _gameState;
     private WaveManager _waveManager;
     public event Action<GameState> OnGameStateChanged;
-
+    [SerializeField] private GameObject winMenu;
     [SerializeField] private InputAction startWaveAction;
 
     private void OnEnable()
@@ -84,7 +84,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
 
     public void OnWaveComplete()
     {
-        if (currentWave <= _numberOfWaves)
+        if (currentWave < _numberOfWaves)
         {
             SetGameState(GameState.BUILDING);
             currentWave++;
@@ -92,7 +92,10 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
         }
         else
         {
-            Debug.Log("All waves completed!");
+            Debug.Log("win");
+            
+            winMenu.gameObject.SetActive(true);
+            winMenu.GetComponent<WinMenuManager>().BackToMenu();
         }
     }
 
