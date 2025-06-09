@@ -61,7 +61,7 @@ public class UpgradePanel : MonoBehaviour
         if(!(resourceManager.GetMoney() >= price))return;
         resourceManager.AddMoney( (int)(-price));
         _tower.setUpgradePanelActive(false);
-        _tower.IncreaseAttackSpeed(1f);
+        _tower.IncreaseAttackSpeed(.2f);
         Close();
     }
 
