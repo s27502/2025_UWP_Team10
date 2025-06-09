@@ -70,7 +70,8 @@ public class PlacingField : MonoBehaviour,
     {
         _resourceManager.SpendMoney(factory.GetTowerData().Cost);
         // _placedTower = factory.CreateTower(transform.position);
-        Tower tower = (Tower)factory.CreateTower(transform.position);
+        Vector3 position = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        Tower tower = (Tower)factory.CreateTower(position);
         tower.SetPlacingField(this);
         _placedTower = tower;
         _towerPlaced = true;
