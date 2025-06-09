@@ -63,15 +63,20 @@ namespace Enemies
             ServiceLocator.Instance.GetService<ResourceManager>()?.DealDamage(data.Damage);
             Die();
         }
+        
+        
 
         public void TakeDamage(float amount)
         {
-            
             currentHP -= amount;
 
+            var enemyHpBar = this.gameObject.GetComponent<EnemyHpBar>();
+            enemyHpBar.UpdateHpBar(currentHP, data.MaxHP);
+            
             if (currentHP <= 0)
             {
                 Kill();
+                enemyHpBar.UpdateHpBar(1, 1);
             }
             ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Enemy_Hit");
         }
