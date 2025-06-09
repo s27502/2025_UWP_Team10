@@ -47,6 +47,32 @@ MonoBehaviour:
   OnWaveComplete:
     m_PersistentCalls:
       m_Calls: []
-  waves: []
+  OnWaveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  waves:
+  - EnemiesInWave:
+    - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
+    NumberToSpawn: 10
+    EnemySpawnRate: 1
+  - EnemiesInWave:
+    - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
+    - {fileID: 11400000, guid: 98337766f4194344d8cde9e3334d7002, type: 2}
+    NumberToSpawn: 10
+    EnemySpawnRate: 1
+  - EnemiesInWave:
+    - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
+    - {fileID: 11400000, guid: 98337766f4194344d8cde9e3334d7002, type: 2}
+    NumberToSpawn: 10
+    EnemySpawnRate: 1
   spawnPoint: {fileID: 0}
-  path: []
+  path:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
