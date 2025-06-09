@@ -59,7 +59,7 @@ public class Cannon : Tower
         if (direction != Vector3.zero)
         {
             Quaternion lookRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f); 
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime); 
         }
 
         Debug.Log($"Attacking enemy: {target.name} for {data.Damage} dmg");
