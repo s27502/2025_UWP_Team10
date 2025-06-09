@@ -16,5 +16,5 @@ MonoBehaviour:
   <MaxHP>k__BackingField: 150
   <Prefab>k__BackingField: {fileID: 6402351554884628738, guid: 0607783834b68ac4181abf6bf7b1e3e8,
     type: 3}
-  <Reward>k__BackingField: 10
+  <Reward>k__BackingField: 20
   <Damage>k__BackingField: 10

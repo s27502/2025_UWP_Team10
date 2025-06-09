@@ -99,7 +99,7 @@ PrefabInstance:
     - target: {fileID: 573821489957064591, guid: 7c3f6251ec9960b489d8f38424853c73,
         type: 3}
       propertyPath: waves.Array.data[0].EnemiesInWave.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 573821489957064591, guid: 7c3f6251ec9960b489d8f38424853c73,
         type: 3}
