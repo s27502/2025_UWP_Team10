@@ -6,20 +6,20 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 {
     [SerializeField] private int _money;
     private int _hp;
+    [SerializeField] private GameObject gameOverScreen; 
 
     public event Action<int> OnMoneyChanged;
     public event Action<int> OnHpChanged;
     private TutorialUIManager tutorialManager;
 
-    protected override void Awake()
-    {
+    protected override void Awake() {
         base.Awake();
         if (Instance != this) return;
 
         ServiceLocator.Instance.Register(this);
         tutorialManager = GameObject.FindObjectOfType<TutorialUIManager>();
         _money = 100;
-        _hp = 100;
+        _hp = 100; 
     }
 
     public void AddMoney(int amount)
@@ -59,6 +59,7 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
         if (_hp <= 0)
         {
             Debug.Log("Game Over");
+            gameOverScreen.gameObject.SetActive(true);
             // TODO: trigger lose state
         }
     }
