@@ -8,8 +8,8 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 {
     [SerializeField] private int _money;
     private int _hp;
-    [SerializeField] private GameObject gameOverScreen; 
-
+    [SerializeField] private GameObject gameOverScreen;
+    
     public event Action<int> OnMoneyChanged;
     public event Action<int> OnHpChanged;
     private TutorialUIManager tutorialManager;
