@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : SingletonDoNotDestroy<AudioManager>
 {
     [SerializeField] private AudioSource _soundtrackAudioSource;
-    [SerializeField] private List<AudioSource> _sfxAudioSources;
+    [SerializeField] private AudioSource _SFXAudioSource;
     [SerializeField] private List<AudioClip> sfxClips;
     [SerializeField] private List<AudioClip> soundtrackClips;
 
@@ -28,8 +28,9 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
         if (gm != null)
         {
             gm.OnGameStateChanged += PlayAmbient;
-            PlayAmbient(gm.GetGameState());
         }
+        
+        PlayAmbient(gm.GetGameState());
     }
 
     private void InitializeAudioLibrary()
@@ -53,7 +54,7 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
         _audioLibrary["sfx"] = sfx;
         _audioLibrary["soundtracks"] = music;
     }
-
+    
     private void OnDestroy()
     {
         var gm = ServiceLocator.Instance?.GetService<GameManager>();
@@ -85,21 +86,7 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
             if (group.TryGetValue(clipName, out var clip))
             {
                 if (source == null)
-                {
-                    if (category == "sfx")
-                    {
-                        source = GetAvailableSFXSource();
-                        if (source == null)
-                        {
-                            Debug.LogWarning("Brak wolnego AudioSource dla SFX.");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        source = _soundtrackAudioSource;
-                    }
-                }
+                    source = _SFXAudioSource;
 
                 if (source.clip == clip && source.isPlaying)
                     return;
@@ -107,7 +94,7 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
                 source.clip = clip;
                 source.Play();
                 _currentClipName = clipName;
-                Debug.Log($"{clipName} played on {source.name}");
+                Debug.Log(clipName + " played");
             }
             else
             {
@@ -118,16 +105,5 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
         {
             Debug.LogWarning($"Audio category '{category}' not found.");
         }
-    }
-
-    private AudioSource GetAvailableSFXSource()
-    {
-        foreach (var source in _sfxAudioSources)
-        {
-            if (!source.isPlaying)
-                return source;
-        }
-
-        return null;
     }
 }
