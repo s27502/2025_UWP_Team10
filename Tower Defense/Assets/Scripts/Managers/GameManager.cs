@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : SingletonDoNotDestroy<GameManager>
 {
@@ -10,6 +11,28 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     private WaveManager _waveManager;
     public event Action<GameState> OnGameStateChanged;
 
+    [SerializeField] private InputAction startWaveAction;
+
+    private void OnEnable()
+    {
+        startWaveAction.Enable();
+        startWaveAction.performed += OnStartWaveInput;
+    }
+
+    private void OnDisable()
+    {
+        startWaveAction.performed -= OnStartWaveInput;
+        startWaveAction.Disable();
+    }
+
+    private void OnStartWaveInput(InputAction.CallbackContext context)
+    {
+        if (_gameState == GameState.BUILDING && currentWave <= _numberOfWaves)
+        {
+            SetGameState(GameState.DEFENDING);
+            _waveManager.StartWave();
+        }
+    }
 
     public string GetEnemyTypesAndCountForWave()
     {
@@ -56,25 +79,6 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
         return string.Join(", ", parts);
     }
 
-    private void Update()
-    {
-        if (currentWave <= _numberOfWaves)
-        {
-            switch (_gameState)
-            {
-                case GameState.BUILDING:
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        SetGameState(GameState.DEFENDING);
-                        _waveManager.StartWave();
-                    }
-                    break;
-                case GameState.DEFENDING:
-                    break;
-            }
-        }
-    }
-
     public GameState GetGameState() => _gameState;
 
     public void OnWaveComplete()
@@ -90,7 +94,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
             Debug.Log("All waves completed!");
         }
     }
-    
+
     private void SetGameState(GameState newState)
     {
         if (_gameState != newState)
