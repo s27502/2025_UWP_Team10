@@ -66,8 +66,8 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
     private IEnumerator ReturnToMenu()
     {
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("MainMenu");
         gameOverScreen.gameObject.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
     }
     public int GetMoney() => _money;
     public int GetHP() => _hp;
