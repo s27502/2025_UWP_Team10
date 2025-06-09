@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using Tutorial;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 {
@@ -56,14 +58,17 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
         
         OnHpChanged?.Invoke(_hp);
 
-        if (_hp <= 0)
-        {
-            Debug.Log("Game Over");
-            gameOverScreen.gameObject.SetActive(true);
-            // TODO: trigger lose state
-        }
+        if (_hp > 0) return;
+        gameOverScreen.gameObject.SetActive(true);
+        StartCoroutine(ReturnToMenu());
     }
-
+    
+    private IEnumerator ReturnToMenu()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("MainMenu");
+        gameOverScreen.gameObject.SetActive(false);
+    }
     public int GetMoney() => _money;
     public int GetHP() => _hp;
 }
