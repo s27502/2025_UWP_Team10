@@ -8,12 +8,14 @@ namespace Towers
     public class Tower : MonoBehaviour, IPointerClickHandler, ITower
     {
         [SerializeField] protected TowerData data;
-        protected PlacingField _placingField;                                             
+        protected PlacingField _placingField;
         private GameObject _upgradePanel;
         private bool _upgradePanelActive;
 
         protected List<Enemy> enemiesInRange = new();
         private float attackCooldown;
+        private float bonusDamage = 0f;
+        private float bonusAttackSpeed = 0f;
 
         protected virtual string GetEnemyTag() => "Enemy";
         protected virtual string GetAttackSound() => "Default_Shot";
@@ -26,7 +28,7 @@ namespace Towers
             if (attackCooldown <= 0f && enemiesInRange.Count > 0)
             {
                 Defend();
-                attackCooldown = data.AttackSpeed;
+                attackCooldown = Mathf.Max(0.05f, data.AttackSpeed - bonusAttackSpeed);
             }
         }
 
@@ -50,6 +52,16 @@ namespace Towers
             }
         }
 
+        public void IncreaseDamage(float amount)
+        {
+            bonusDamage += amount;
+        }
+
+        public void IncreaseAttackSpeed(float amount)
+        {
+            bonusAttackSpeed += amount;
+        }
+
         public virtual void Defend()
         {
             CleanupEnemies();
@@ -57,7 +69,7 @@ namespace Towers
             if (enemiesInRange.Count == 0) return;
 
             Enemy target = null;
-            
+
             while (enemiesInRange.Count > 0)
             {
                 target = enemiesInRange[0];
@@ -73,7 +85,6 @@ namespace Towers
 
             if (target == null) return;
 
-
             Vector3 direction = target.transform.position - transform.position;
             direction.y = 0f;
 
@@ -82,14 +93,13 @@ namespace Towers
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
                 transform.rotation = lookRotation;
             }
-            
-            target.TakeDamage(data.Damage);
 
-            Debug.Log($"Attacking enemy: {target.name} for {data.Damage} dmg");
+            float totalDamage = data.Damage + bonusDamage;
+            target.TakeDamage(totalDamage);
+
+            Debug.Log($"Attacking enemy: {target.name} for {totalDamage} dmg");
             ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", GetAttackSound());
         }
-
-
 
         public void OnPointerClick(PointerEventData eventData)
         {
@@ -98,7 +108,7 @@ namespace Towers
                 _upgradePanel = ServiceLocator.Instance.GetService<HUDController>().GetHUDView().gameObject.transform.Find("UpgradePanel").gameObject;
                 _upgradePanel.transform.position = eventData.position;
                 _upgradePanel.SetActive(true);
-                
+
                 UpgradePanel panel = _upgradePanel.GetComponent<UpgradePanel>();
                 panel.SetTower(this);
                 panel.SetPlacingField(_placingField);
@@ -113,19 +123,18 @@ namespace Towers
 
         public string GetTowerName() => data.TowerName;
         public int GetCost() => data.Cost;
-        public float GetAttackSpeed() => data.AttackSpeed;
-        public float GetDamage() => data.Damage;
+        public float GetAttackSpeed() => data.AttackSpeed - bonusAttackSpeed;
+        public float GetDamage() => data.Damage + bonusDamage;
         public TowerData GetData() => data;
 
         public void SetPlacingField(PlacingField placingField)
         {
             _placingField = placingField;
         }
-        
+
         private void CleanupEnemies()
         {
             enemiesInRange.RemoveAll(e => e == null || !e.gameObject.activeSelf);
         }
-
     }
 }
