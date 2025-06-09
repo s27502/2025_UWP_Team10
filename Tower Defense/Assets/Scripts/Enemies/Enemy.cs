@@ -63,23 +63,28 @@ namespace Enemies
             ServiceLocator.Instance.GetService<ResourceManager>()?.DealDamage(data.Damage);
             Die();
         }
+        
+        
 
         public void TakeDamage(float amount)
         {
-            
             currentHP -= amount;
 
+            var enemyHpBar = this.gameObject.GetComponent<EnemyHpBar>();
+            enemyHpBar.UpdateHpBar(currentHP, data.MaxHP);
+            
             if (currentHP <= 0)
             {
-                Die();
+                Kill();
+                enemyHpBar.UpdateHpBar(1, 1);
             }
             ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "Enemy_Hit");
         }
 
         public void Die()
         {
-            // TODO play VFX, sound and increase money
-            ServiceLocator.Instance.GetService<ResourceManager>().AddMoney(data.Reward);
+            // TODO play VFX, sound
+
             ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
             //Destroy(gameObject);
             _pool?.ReleaseObject(this);
@@ -87,7 +92,7 @@ namespace Enemies
 
         public void Kill()
         {
-            ServiceLocator.Instance.GetService<ResourceManager>()?.AddMoney(data.Reward);
+            ServiceLocator.Instance.GetService<ResourceManager>().AddMoney(data.Reward);
             Die();
         }
 
