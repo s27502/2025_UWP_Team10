@@ -13,6 +13,7 @@ namespace Enemies
         private const float PathThreshold = 0.1f;
         private Vector3 direction;
         private IObjectPool _pool;
+        [SerializeField] private GameObject deadAnim;
 
         public void Initialize(EnemyData enemyData)
         {
@@ -93,8 +94,12 @@ namespace Enemies
                 ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "EnemyDie2");
             }
 
+            Instantiate(deadAnim);
+            deadAnim.transform.position = transform.position;
             ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
             //Destroy(gameObject);
+            
+
             _pool?.ReleaseObject(this);
 
         }

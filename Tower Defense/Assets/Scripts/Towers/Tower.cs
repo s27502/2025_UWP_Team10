@@ -10,7 +10,8 @@ namespace Towers
         [SerializeField] protected TowerData data;
         [SerializeField] protected GameObject baseModel;
         [SerializeField] protected GameObject upgradeModel;
-        
+        [SerializeField] private ParticleSystem shootEffect;
+
         protected PlacingField _placingField;
         private GameObject _upgradePanel;
         private bool _upgradePanelActive;
@@ -101,7 +102,13 @@ namespace Towers
             target.TakeDamage(totalDamage);
 
             Debug.Log($"Attacking enemy: {target.name} for {totalDamage} dmg");
+
             ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", GetAttackSound());
+
+            if (shootEffect != null)
+            {
+                shootEffect.Play();
+            }
         }
 
         public void OnPointerClick(PointerEventData eventData)
