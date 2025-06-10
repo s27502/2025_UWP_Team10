@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Waves;
 
-public class WaveManager : SingletonDoDestroy<WaveManager>
+public class WaveManager : SingletonDoNotDestroy<WaveManager>
 {
     public UnityEvent OnWaveComplete;
     public UnityEvent OnWaveStart;

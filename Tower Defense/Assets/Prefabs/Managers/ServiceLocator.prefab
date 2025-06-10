@@ -448,82 +448,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &6737720938936675776
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9114596941004332103}
-  - component: {fileID: 1139235512501101116}
-  m_Layer: 0
-  m_Name: WaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9114596941004332103
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737720938936675776}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6051743348302365668}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1139235512501101116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737720938936675776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7fa2a53ba7872448a20bc2997b097a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnWaveComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  OnWaveStart:
-    m_PersistentCalls:
-      m_Calls: []
-  waves:
-  - EnemiesInWave:
-    - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
-    NumberToSpawn: 10
-    EnemySpawnRate: 1
-  - EnemiesInWave:
-    - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
-    - {fileID: 11400000, guid: 98337766f4194344d8cde9e3334d7002, type: 2}
-    NumberToSpawn: 10
-    EnemySpawnRate: 1
-  - EnemiesInWave:
-    - {fileID: 11400000, guid: 46e500287ab0bc04589fc86dd3e5d27c, type: 2}
-    - {fileID: 11400000, guid: 98337766f4194344d8cde9e3334d7002, type: 2}
-    NumberToSpawn: 10
-    EnemySpawnRate: 1
-  spawnPoint: {fileID: 0}
-  path:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &7045474513418161054
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +654,6 @@ Transform:
   m_Children:
   - {fileID: 5187552546485419162}
   - {fileID: 8802214797687704919}
-  - {fileID: 9114596941004332103}
   - {fileID: 2355000132558476565}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
