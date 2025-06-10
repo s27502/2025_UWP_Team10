@@ -84,7 +84,6 @@ namespace Enemies
 
         public void Die()
         {
-            // TODO play VFX, sound
             if (CompareTag("Enemy"))
             {
                 ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "EnemyDie1");
@@ -93,16 +92,15 @@ namespace Enemies
             {
                 ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX", "EnemyDie2");
             }
+    
+            GameObject anim = Instantiate(deadAnim, transform.position, transform.rotation);
+            Destroy(anim, 3f);
 
-            Instantiate(deadAnim);
-            deadAnim.transform.position = transform.position;
-            ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); //#TODO probably subscribe to OnEnemyDeath method in gamemanager and then pass this to wave manager
-            //Destroy(gameObject);
-            
-
+            ServiceLocator.Instance.GetService<WaveManager>()?.RemoveEnemy(this); // #TODO: Subscribe to OnEnemyDeath instead
+    
             _pool?.ReleaseObject(this);
-
         }
+
 
         public void Kill()
         {
