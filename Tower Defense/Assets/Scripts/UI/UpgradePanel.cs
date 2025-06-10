@@ -21,9 +21,19 @@ public class UpgradePanel : MonoBehaviour
 
     public void UpgradeDamage()
     {
-        //atk++
-        Debug.Log("Upgrade Damage");
+        if (_tower == null || _placingField == null)
+        {
+            Debug.Log("nulllll");
+            return;
+        }
+        var price = _tower.GetCost() * 0.3f;
+        if (!(resourceManager.GetMoney() >= price))return;
+        resourceManager.AddMoney( (int)(-price));
+        _tower.setUpgradePanelActive(false);
+        _tower.IncreaseDamage(5f);
+        Close();
     }
+    
     public void SellTower()
     {
         if (_tower == null || _placingField == null)
@@ -41,8 +51,18 @@ public class UpgradePanel : MonoBehaviour
     }
     public void UpgradeAtkSpeed()
     {
-        //atkspeed++
-        Debug.Log("Upgrade Atk Speed");
+        if (_tower == null || _placingField == null)
+        {
+            Debug.Log("nulllll");
+            return;
+        }
+
+        var price = _tower.GetCost() * 0.4f;
+        if(!(resourceManager.GetMoney() >= price))return;
+        resourceManager.AddMoney( (int)(-price));
+        _tower.setUpgradePanelActive(false);
+        _tower.IncreaseAttackSpeed(.2f);
+        Close();
     }
 
     public void SetClosest()
