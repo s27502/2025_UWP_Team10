@@ -39,7 +39,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     public string GetEnemyTypesAndCountForWave()
     {
         var waveManager = ServiceLocator.Instance.GetService<WaveManager>();
-        var counts = waveManager.GetEnemyTypeCounts();
+        //var counts = waveManager.GetEnemyTypeCounts();
         string enemyInfo = "Typy wrogów:\n";
         return enemyInfo;
     }
@@ -59,28 +59,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
         _waveManager.OnWaveComplete.AddListener(OnWaveComplete);
     }
 
-    public string GetCurrentWaveEnemyTypes()
-    {
-        return ServiceLocator.Instance.GetService<WaveManager>()?.GetEnemyTypesInCurrentWave();
-    }
-
-    public string GetEnemyTypeInfoString()
-    {
-        var waveManager = ServiceLocator.Instance.GetService<WaveManager>();
-        var enemyCounts = waveManager?.GetEnemyTypeCounts();
-
-        if (enemyCounts == null || enemyCounts.Count == 0)
-            return "Brak wrogów";
-
-        List<string> parts = new List<string>();
-        foreach (var pair in enemyCounts)
-        {
-            parts.Add($"{pair.Key}: {pair.Value}");
-        }
-
-        return string.Join(", ", parts);
-    }
-
+    
     public GameState GetGameState() => _gameState;
 
     public void OnWaveComplete()

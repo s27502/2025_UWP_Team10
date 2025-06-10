@@ -3,6 +3,12 @@ using UnityEngine;
 
 namespace ScriptableObjects
 {
+    public enum EnemySpeedType
+    {
+        Slow,
+        Fast
+    }
+
     [CreateAssetMenu(menuName = "Scriptable Objects/EnemyData", fileName = "NewEnemyData")]
     public class EnemyData : ScriptableObject
     {
@@ -10,8 +16,8 @@ namespace ScriptableObjects
         [field: SerializeField] public float MaxHP { get; private set; }
         [field: SerializeField] public Enemy Prefab { get; private set; }
         [field: SerializeField] public int Reward { get; private set; }
-     
         [field: SerializeField] public int Damage { get; private set; }
-        
+
+        [field: SerializeField] public EnemySpeedType SpeedType { get; private set; }  
     }
 }

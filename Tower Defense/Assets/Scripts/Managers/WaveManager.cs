@@ -14,7 +14,7 @@ public class WaveManager : SingletonDoDestroy<WaveManager>
     [SerializeField] public Wave[] waves;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform[] path;
-
+    [SerializeField] private WavePreviewManager wavePreviewManager;
     private GameManager _gameManager;
     private Wave currentWave;
     private int waveIndex = 0;
@@ -111,6 +111,7 @@ public class WaveManager : SingletonDoDestroy<WaveManager>
         string name = enemyData.name;
         if (counts.ContainsKey(name)) counts[name]++;
         else counts[name] = 1;
+        GetEnemyTypesInCurrentWave();
     }
 
     public void StartWave()
@@ -129,6 +130,7 @@ public class WaveManager : SingletonDoDestroy<WaveManager>
 
         SetState(WaveState.Spawn);
     }
+    
 
     private void SetState(WaveState newState)
     {
@@ -148,24 +150,19 @@ public class WaveManager : SingletonDoDestroy<WaveManager>
         }
     }
 
-    public string GetEnemyTypesInCurrentWave()
+    private void GetEnemyTypesInCurrentWave()
     {
-        if (currentWave?.EnemiesInWave == null) return "";
-
-        HashSet<string> enemyTypeNames = new();
-        foreach (var enemyData in currentWave.EnemiesInWave)
-        {
-            if (enemyData != null)
-            {
-                enemyTypeNames.Add(enemyData.name);
-            }
-        }
-
-        return $"Typy wrogów: {enemyTypeNames.Count} – {string.Join(", ", enemyTypeNames)}";
+        var fastcount = 0;
+        var slowcount = 0;
+        
+        fastcount = GameObject.FindGameObjectsWithTag("FlyingEnemy").Length;
+        slowcount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        
+        wavePreviewManager.RefreshWavePreview(fastcount, slowcount);
+        
     }
 
-    public Dictionary<string, int> GetEnemyTypeCounts()
-    {
-        return new Dictionary<string, int>(counts); 
-    }
+    
+
+   
 }

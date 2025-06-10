@@ -16,7 +16,7 @@ public class HUDView : MonoBehaviour
     public void UpdateEnemyInfo(string info)
     {
         Debug.Log("USTAWIAM enemyInfoText: " + info);
-        enemyInfoText.text = info;
+        //enemyInfoText.text = info;
     }
 
 
