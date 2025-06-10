@@ -8,6 +8,9 @@ namespace Towers
     public class Tower : MonoBehaviour, IPointerClickHandler, ITower
     {
         [SerializeField] protected TowerData data;
+        [SerializeField] protected GameObject baseModel;
+        [SerializeField] protected GameObject upgradeModel;
+        
         protected PlacingField _placingField;
         private GameObject _upgradePanel;
         private bool _upgradePanelActive;
@@ -135,6 +138,12 @@ namespace Towers
         private void CleanupEnemies()
         {
             enemiesInRange.RemoveAll(e => e == null || !e.gameObject.activeSelf);
+        }
+
+        public void UpgradeModel()
+        {
+            baseModel.SetActive(false);
+            upgradeModel.SetActive(true);
         }
     }
 }
