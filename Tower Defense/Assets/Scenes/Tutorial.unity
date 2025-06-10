@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &97625998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1139716054117905470, guid: 4613f4c25117f13479c6ba30e2b11032,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111826535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &314675689
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,6 +2569,11 @@ PrefabInstance:
       propertyPath: waves.Array.data[2].EnemiesInWave.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
+        type: 3}
+      propertyPath: winMenu
+      value: 
+      objectReference: {fileID: 97625998}
     - target: {fileID: 3771561336209985031, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
       propertyPath: startWaveAction.m_Name
