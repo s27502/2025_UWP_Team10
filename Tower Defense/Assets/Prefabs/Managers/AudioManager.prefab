@@ -449,6 +449,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cd78f889abb2e5d4091d7b61c9eec72d, type: 3}
   - {fileID: 8300000, guid: f528396ea19d2fd4e9b5d6d1ae2c9c66, type: 3}
   - {fileID: 8300000, guid: acd4f1730fc56dc42ba1a281888c32d3, type: 3}
+  - {fileID: 8300000, guid: b144c57097636ed4e8134a39e5e3e364, type: 3}
   soundtrackClips:
   - {fileID: 8300000, guid: 3ec7ccf6effa3cf49941a763db58b4b0, type: 3}
   - {fileID: 8300000, guid: 3002c9e3c935fd04c9a130b413593801, type: 3}

@@ -48,6 +48,8 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
 
         OnHpChanged?.Invoke(_hp);
 
+        ServiceLocator.Instance.GetService<AudioManager>().PlayClip("SFX","Damage_Na_Morde");
+
         if (_hp > 0) return;
         gameOverScreen.gameObject.SetActive(true);
         StartCoroutine(ReturnToMenu());
