@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CannonData
   m_EditorClassIdentifier: 
   <TowerName>k__BackingField: Cannon
-  <Cost>k__BackingField: 100
+  <Cost>k__BackingField: 80
   <AttackSpeed>k__BackingField: 1
   <Damage>k__BackingField: 50
   <Prefab>k__BackingField: {fileID: 7351771706100564634, guid: 84c015623557f0347b169e4077d0c3e9,
