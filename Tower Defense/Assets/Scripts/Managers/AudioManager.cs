@@ -139,4 +139,13 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
 
         return null;
     }
+    
+    public void StopMusic()
+    {
+        if (_soundtrackAudioSource != null && _soundtrackAudioSource.isPlaying)
+        {
+            _soundtrackAudioSource.Stop();
+        }
+    }
+
 }

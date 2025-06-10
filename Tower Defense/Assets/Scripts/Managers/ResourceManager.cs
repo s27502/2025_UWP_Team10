@@ -62,4 +62,16 @@ public class ResourceManager : SingletonDoNotDestroy<ResourceManager>
     }
     public int GetMoney() => _money;
     public int GetHP() => _hp;
+
+    public void ResetResources()
+    {
+        _money = 100;
+        _hp = 100;
+
+        OnMoneyChanged?.Invoke(_money);
+        OnHpChanged?.Invoke(_hp);
+
+        if (gameOverScreen != null)
+            gameOverScreen.SetActive(false);
+    }
 }
