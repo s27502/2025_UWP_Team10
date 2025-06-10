@@ -62,6 +62,24 @@ public class WaveManager : SingletonDoNotDestroy<WaveManager>
                 break;
         }
     }
+    
+    public void ResetWaves()
+    {
+        waveIndex = 0;
+        enemyIndex = 0;
+        enemiesSpawned = 0;
+        spawnTimer = 0f;
+        counts.Clear();
+        aliveEnemies.Clear();
+
+        if (waves != null && waves.Length > 0)
+        {
+            currentWave = waves[waveIndex];
+        }
+
+        SetState(WaveState.Pause);
+    }
+
 
     private void HandleSpawning()
     {

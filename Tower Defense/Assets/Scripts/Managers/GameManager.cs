@@ -10,6 +10,7 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     private GameState _gameState;
     private WaveManager _waveManager;
     public event Action<GameState> OnGameStateChanged;
+
     [SerializeField] private GameObject winMenu;
     [SerializeField] private InputAction startWaveAction;
 
@@ -93,9 +94,11 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
         else
         {
             Debug.Log("win");
-            
+
             winMenu.gameObject.SetActive(true);
             winMenu.GetComponent<WinMenuManager>().BackToMenu();
+
+            ResetGame();
         }
     }
 
@@ -109,4 +112,21 @@ public class GameManager : SingletonDoNotDestroy<GameManager>
     }
 
     public int GetCurrentWave() => currentWave;
+
+    public void ResetGame()
+    {
+        Debug.Log("Reset gry");
+
+        currentWave = 1;
+        SetGameState(GameState.BUILDING);
+
+        ServiceLocator.Instance.GetService<HUDController>()?.SetWave(currentWave);
+        _waveManager.ResetWaves();
+
+        ServiceLocator.Instance.GetService<ResourceManager>()?.ResetResources();
+        ServiceLocator.Instance.GetService<AudioManager>()?.StopMusic();
+
+        if (winMenu != null)
+            winMenu.SetActive(false);
+    }
 }
