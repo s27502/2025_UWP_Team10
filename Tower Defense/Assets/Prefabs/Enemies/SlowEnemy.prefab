@@ -408,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 5534220112347357959}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 99.53027, y: 46.27942, z: -53.129883}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -449,6 +449,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd373a2c8aae7c499fc1bde93602dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadAnim: {fileID: 1183724302665361768, guid: fa5630f14fbe5064099d98053b3412da,
+    type: 3}
 --- !u!135 &6350909350426510399
 SphereCollider:
   m_ObjectHideFlags: 0
