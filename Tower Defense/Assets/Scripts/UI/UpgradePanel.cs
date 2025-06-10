@@ -49,6 +49,7 @@ public class UpgradePanel : MonoBehaviour
         Close();
         
     }
+    
     public void UpgradeAtkSpeed()
     {
         if (_tower == null || _placingField == null)
@@ -62,6 +63,7 @@ public class UpgradePanel : MonoBehaviour
         resourceManager.AddMoney( (int)(-price));
         _tower.setUpgradePanelActive(false);
         _tower.IncreaseAttackSpeed(.2f);
+        _tower.UpgradeModel();
         Close();
     }
 
