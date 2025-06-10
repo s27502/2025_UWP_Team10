@@ -3189,7 +3189,7 @@ PrefabInstance:
         type: 3}
       propertyPath: soundtrackClips.Array.data[0]
       value: 
-      objectReference: {fileID: 8300000, guid: 6b14607eba7120444a396c3fe0e45394, type: 3}
+      objectReference: {fileID: 8300000, guid: 3ec7ccf6effa3cf49941a763db58b4b0, type: 3}
     - target: {fileID: 6051743348302365668, guid: fc390fd06092fcb40ae1b5026cd410d7,
         type: 3}
       propertyPath: m_LocalPosition.x
