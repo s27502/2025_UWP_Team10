@@ -31,6 +31,15 @@ public class AudioManager : SingletonDoNotDestroy<AudioManager>
             PlayAmbient(gm.GetGameState());
         }
     }
+    
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlayClip("sfx", "Button_Click");
+        }
+    }
+
 
     private void InitializeAudioLibrary()
     {
