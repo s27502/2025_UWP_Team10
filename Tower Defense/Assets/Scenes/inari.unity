@@ -134,6 +134,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f1c05fd5a20524fb7b51b30c5c52fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &159710587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6323975586053900217, guid: 4613f4c25117f13479c6ba30e2b11032,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111826535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &162796324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2826447269973673399, guid: 4613f4c25117f13479c6ba30e2b11032,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111826535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &239389565
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +532,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!114 &499970742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6293974612388783748, guid: 4613f4c25117f13479c6ba30e2b11032,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111826535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &542561151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -861,6 +897,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9fa2856703824646b86de273913149c, type: 3}
+--- !u!114 &772218408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3197258087761636779, guid: 4613f4c25117f13479c6ba30e2b11032,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111826535}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,6 +1520,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5981798403366662038, guid: 4613f4c25117f13479c6ba30e2b11032,
+        type: 3}
+      propertyPath: fastEnemyImg
+      value: 
+      objectReference: {fileID: 499970742}
+    - target: {fileID: 5981798403366662038, guid: 4613f4c25117f13479c6ba30e2b11032,
+        type: 3}
+      propertyPath: slowEnemyImg
+      value: 
+      objectReference: {fileID: 772218408}
+    - target: {fileID: 5981798403366662038, guid: 4613f4c25117f13479c6ba30e2b11032,
+        type: 3}
+      propertyPath: fastEnemyCountText
+      value: 
+      objectReference: {fileID: 159710587}
+    - target: {fileID: 5981798403366662038, guid: 4613f4c25117f13479c6ba30e2b11032,
+        type: 3}
+      propertyPath: slowEnemyCountText
+      value: 
+      objectReference: {fileID: 162796324}
     - target: {fileID: 6363039170852325244, guid: 4613f4c25117f13479c6ba30e2b11032,
         type: 3}
       propertyPath: resourceManager
